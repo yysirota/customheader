@@ -1,0 +1,824 @@
+/*
+ * Chabad of Fort Lee — Custom Header CSS
+ * Hosted from: yysirota/customheader
+ * Sukkot homepage promo removed.
+ */
+
+:root{
+    --gold:#e5a900;
+    --gold-grad-1:#f5c542;
+    --gold-grad-2:#e89b00;
+    --gold-grad-hover-1:#ffd85c;
+    --gold-grad-hover-2:#f0a500;
+    --donate-glow:rgba(245,197,66,.55);
+    --donate-glow-strong:rgba(245,197,66,.9);
+    --header-frost:rgba(245,245,245,.60);
+    --header-shadow:rgba(0,0,0,.12);
+}
+
+.hp_content_wrapper .sneak-peek-container .sneak_peek .thumbnail{
+    background-color:unset;
+}
+.hp-table .hp-row-first .promo_slider .slider .cycle-caption big{
+    font-size:55px;
+}
+.chabad_updates .message_format{
+    text-align:center !important;
+    font-size:16px !important;
+    line-height:1.5 !important;
+}
+.chabad_updates .prayer_heading{
+    display:inline-block !important;
+    font-size:18px !important;
+    font-weight:bold !important;
+}
+
+.site-logo-wrapper,
+.site-logo-wrapper::before,
+.site-logo-wrapper::after{
+    background:transparent !important;
+    box-shadow:none !important;
+    border:none !important;
+    padding:0 !important;
+}
+.site-logo-wrapper img{
+    background:transparent !important;
+    transform:scale(1.60);
+    transform-origin:center center;
+}
+.site-logo-wrapper{
+    margin-right:35px !important;
+}
+
+.co_menu_item.donate_link{
+    display:table-cell !important;
+}
+.co_menu_item.donate_link a.parent{
+    position:relative;
+    display:inline-flex !important;
+    align-items:center;
+    padding:13px 26px !important;
+    margin-top:-8px;
+    margin-bottom:-8px;
+    background:linear-gradient(135deg,var(--gold-grad-1),var(--gold-grad-2)) !important;
+    color:#fff !important;
+    font-size:18px !important;
+    font-weight:800 !important;
+    border-radius:999px;
+    text-decoration:none !important;
+    box-shadow:0 0 14px var(--donate-glow);
+    transition:all .25s ease;
+    overflow:hidden;
+    animation:donateHeartbeat 5s infinite;
+}
+.co_menu_item.donate_link a.parent:before{
+    content:"♥";
+    color:#fff;
+    font-size:19px;
+    margin-right:9px;
+    animation:heartBeat 1.5s infinite;
+}
+.co_menu_item.donate_link a.parent:hover{
+    transform:translateY(-3px) scale(1.08);
+    background:linear-gradient(135deg,var(--gold-grad-hover-1),var(--gold-grad-hover-2)) !important;
+    box-shadow:0 0 28px var(--donate-glow-strong), 0 8px 20px rgba(0,0,0,.18);
+}
+.co_menu_item.donate_link a.parent:after{
+    content:"";
+    position:absolute;
+    top:0;
+    left:-70px;
+    width:45px;
+    height:100%;
+    background:rgba(255,255,255,.45);
+    transform:skewX(-22deg);
+    animation:donateShine 3s infinite;
+}
+
+@keyframes donateHeartbeat{
+    0%,88%,100%{ transform:scale(1); box-shadow:0 0 14px var(--donate-glow); }
+    91%{ transform:scale(1.08); box-shadow:0 0 26px var(--donate-glow-strong); }
+    94%{ transform:scale(.98); }
+    97%{ transform:scale(1.05); }
+}
+/* Shared by the desktop pill AND the mobile floating button below */
+@keyframes heartBeat{
+    0%,100%{ transform:scale(1); }
+    25%{ transform:scale(1.25); }
+    45%{ transform:scale(.95); }
+    65%{ transform:scale(1.18); }
+}
+@keyframes donateShine{
+    0%,80%{ left:-70px; }
+    100%{ left:140%; }
+}
+
+#header,
+#header.header_fixed,
+#header.sticky,
+#header.scrolled,
+#header.hide,
+#header.hidden,
+#header.header_hide,
+#header.scrolling_down{
+    position:fixed !important;
+    top:0 !important;
+    width:100% !important;
+    transform:translateY(0) !important;
+}
+#header.on-scroll{
+    background:rgba(245,245,245,.82) !important;
+    backdrop-filter:blur(10px) !important;
+    -webkit-backdrop-filter:blur(10px) !important;
+    box-shadow:0 2px 12px var(--header-shadow) !important;
+}
+body.scrolled #header{
+    background:var(--header-frost) !important;
+    backdrop-filter:blur(10px) !important;
+    -webkit-backdrop-filter:blur(10px) !important;
+    box-shadow:0 2px 12px var(--header-shadow) !important;
+}
+body:not(.scrolled) #header{
+    background:transparent !important;
+    box-shadow:none !important;
+}
+
+@media (max-width:1024px){
+
+    /* ---- Hide site title text, keep the mark ---- */
+    #header_branding .site_title{
+        display:none !important;
+    }
+
+    /* ---- Logo (final size/position after all the nudging) ---- */
+    #header_branding .site-logo-wrapper{
+        display:block !important;
+        visibility:visible !important;
+        opacity:1 !important;
+        float:left !important;
+        position:relative !important;
+        left:-7px !important;
+        top:3px !important;
+        width:110px !important;
+        height:110px !important;
+        margin-left:0 !important;
+    }
+    #header_branding .site-logo-wrapper img{
+        display:block !important;
+        visibility:visible !important;
+        opacity:1 !important;
+        width:110px !important;
+        height:110px !important;
+        transform:none !important;
+    }
+
+    /* ---- Header sticky sizing / non-homepage always-frosted ---- */
+    #header.on-scroll,
+    #header.on-scroll.header-hidden,
+    #header.header-hidden,
+    #header.scrolled-hide{
+        position:fixed !important;
+        top:0 !important;
+        left:0 !important;
+        right:0 !important;
+        visibility:visible !important;
+        opacity:1 !important;
+        transform:translateY(0) !important;
+        display:block !important;
+    }
+    #header,
+    #header.on-scroll,
+    #header .header-wrapper,
+    #header .branding-search{
+        min-height:70px !important;
+    }
+    body:not(.home) #header{
+        background:var(--header-frost) !important;
+        backdrop-filter:blur(10px) !important;
+        -webkit-backdrop-filter:blur(10px) !important;
+        box-shadow:0 2px 12px var(--header-shadow) !important;
+    }
+
+    /* ---- Hamburger icon ---- */
+    .cs-mobile-menu-open,
+    .js-mobile-menu-open,
+    .mobile-menu-open,
+    .mobile_menu_open,
+    .hamburger,
+    .mobile-menu-button,
+    .cs-mobile-menu-open i,
+    .js-mobile-menu-open i{
+        color:var(--gold) !important;
+    }
+    .cs-mobile-menu-open,
+.js-mobile-menu-open,
+.mobile-menu-open,
+.mobile_menu_open,
+.hamburger,
+.mobile-menu-button{
+    position:absolute !important;
+    top:18px !important;
+    right:10px !important;
+    left:auto !important;
+    margin:0 !important;
+}
+    .cs-mobile-menu-open i.fa-bars{
+        font-size:35px !important;
+    }
+
+    /* ---- Floating mobile header donate button ---- */
+    .mobile-header-donate{
+        position:absolute !important;
+       left:auto !important;
+right:55px !important;
+top:52% !important;
+transform:translateY(-50%) !important;
+        transform-origin:center center !important;
+        display:flex !important;
+        align-items:center;
+        justify-content:center;
+        padding:10px 5px !important;
+        background:linear-gradient(135deg,var(--gold-grad-1),var(--gold-grad-2)) !important;
+        color:#fff !important;
+        font-size:16px !important;
+        font-weight:800 !important;
+        border-radius:999px;
+        overflow:hidden !important;
+        text-decoration:none !important;
+        box-shadow:0 0 14px var(--donate-glow);
+        white-space:nowrap;
+        z-index:10 !important;
+        animation:mobileDonateHeartbeat 4s infinite !important;
+    }
+    .mobile-header-donate:before{
+        content:"♥";
+        color:#fff;
+        font-size:15px;
+        margin-right:7px;
+        display:inline-block;
+        animation:heartBeat 1.3s infinite !important;
+    }
+    .mobile-header-donate:after{
+        content:"";
+        position:absolute;
+        top:0;
+        left:-70px;
+        width:45px;
+        height:100%;
+        background:rgba(255,255,255,.45);
+        transform:skewX(-22deg);
+        animation:donateShine 3s infinite;
+    }
+    @keyframes mobileDonateHeartbeat{
+    0%,88%,100%{ transform:translateY(-50%) scale(1); box-shadow:0 0 14px var(--donate-glow); }
+    91%{ transform:translateY(-50%) scale(1.08); box-shadow:0 0 26px var(--donate-glow-strong); }
+    94%{ transform:translateY(-50%) scale(.98); }
+    97%{ transform:translateY(-50%) scale(1.05); }
+}
+
+    /* ---- Hero slider caption ---- */
+    .hp-table .hp-row-first .promo_slider .slider .cycle-caption big{
+        font-size:30px !important;
+        line-height:1.15 !important;
+    }
+
+    /* ---- Remove ב"ה glyph on mobile ---- */
+    .body_wrapper::before{
+        content:none !important;
+        display:none !important;
+    }
+
+    /* ================= MOBILE MENU DRAWER ================= */
+
+    /* Outer glass panel — the ONLY layer with background/blur now */
+    .site-nav-wrapper{
+    position:fixed !important;
+    top:0 !important;
+    bottom:0 !important;
+    height:100vh !important;
+    width:220px !important;
+    box-sizing:border-box !important;
+    background:#fff !important;
+    backdrop-filter:none !important;
+    -webkit-backdrop-filter:none !important;
+    box-shadow:none !important;
+    opacity:1 !important;
+    overflow:hidden !important;
+    border-left:5px solid var(--gold) !important;
+}
+    /* Inner layers stay transparent so there's no double-glass effect */
+    #co_menu_container_wrapper,
+    #co_menu_container{
+        width:100% !important;
+        max-width:100% !important;
+        height:100vh !important;
+height:100dvh !important;
+        left:0 !important;
+        margin:0 !important;
+        padding:0 !important;
+        background:transparent !important;
+        backdrop-filter:none !important;
+        -webkit-backdrop-filter:none !important;
+        box-shadow:none !important;
+        border:none !important;
+        overflow-x:hidden !important;
+    }
+#co_menu_container_wrapper{
+    position:relative !important;
+    overflow:hidden !important;
+}
+    #co_menu_container{
+        overflow-x:hidden !important;
+        overflow-y:auto !important;
+        -webkit-overflow-scrolling:touch !important;
+        overscroll-behavior:contain !important;
+        touch-action:pan-y !important;
+        box-sizing:border-box !important;
+        padding-bottom:90px !important;
+    }
+    .site-nav-wrapper .co_menu_item,
+    .site-nav-wrapper .co_menu_content,
+    .site-nav-wrapper .co_submenu_container{
+        background:transparent !important;
+    }
+
+    /* Menu content positioning */
+    #co_menu_container .main_menu_container{
+        position:relative !important;
+        left:-15px !important;
+        width:100% !important;
+        transform:translateY(50px) !important;
+    }
+    .site-nav-wrapper .co_menu_item.arrow.multi_level{
+        width:220px !important;
+    }
+    .site-nav-wrapper .co_menu_item{
+        width:100% !important;
+        transform:translateY(30px);
+    }
+    .site-nav-wrapper .co_menu_item .parent div{
+        transform:translateX(-18px) !important;
+    }
+    .site-nav-wrapper .donate_link{
+        transform:translate(25px,50px) scale(1.00) !important;
+    }
+
+    /* Link text */
+    .site-nav-wrapper a.parent{
+        display:block !important;
+        box-sizing:border-box !important;
+        width:auto !important;
+        max-width:180px !important;
+        padding-left:20px !important;
+        padding-right:25px !important;
+        font-size:30px !important;
+        font-weight:1000 !important;
+        line-height:2 !important;
+        color:#222 !important;
+        position:relative !important;
+        top:16px !important;
+        white-space:normal !important;
+        overflow-wrap:break-word !important;
+        word-wrap:break-word !important;
+    }
+
+    /* Expand/collapse arrow */
+    .site-nav-wrapper .cs-menu-item-toggle{
+        display:block !important;
+        position:absolute !important;
+        right:-5px !important;
+        left:auto !important;
+        top:-2px !important;
+        width:75px !important;
+        height:75px !important;
+        z-index:20 !important;
+        color:var(--gold) !important;
+        border-color:var(--gold) !important;
+    }
+    .site-nav-wrapper .cs-menu-item-toggle:before,
+    .site-nav-wrapper .cs-menu-item-toggle:after{
+        font-size:30px !important;
+        color:var(--gold) !important;
+        border-color:var(--gold) !important;
+        pointer-events:none !important;
+    }
+
+    /* Close (X) button */
+    .site-nav-wrapper .cs-mobile-menu-close{
+        right:5px !important;
+        top:10px !important;
+        transform:scale(2) !important;
+        color:var(--gold) !important;
+        z-index:9999 !important;
+        pointer-events:auto !important;
+    }
+    .site-nav-wrapper .cs-mobile-menu-close:before,
+    .site-nav-wrapper .cs-mobile-menu-close:after{
+        pointer-events:none !important;
+    }
+
+/* Bottom links (About / Search / Contact) */
+/* Hide ChabadOne's original misplaced block */
+.site-nav-wrapper > .mobile-menu-bottom-links{
+    display:none !important;
+}
+
+/* Custom links placed inside the actual moving drawer */
+#co_menu_container_wrapper > .custom-mobile-menu-links{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    gap:4px !important;
+    position:absolute !important;
+left:0 !important;
+right:auto !important;
+bottom:calc(2px + env(safe-area-inset-bottom, 0px)) !important;
+    width:220px !important;
+    height:58px !important;
+    box-sizing:border-box !important;
+    margin:0 !important;
+    padding:10px 8px !important;
+    background:#fff !important;
+    border-top:1px solid rgba(0,0,0,.15) !important;
+    visibility:visible !important;
+    opacity:1 !important;
+    transform:none !important;
+    pointer-events:auto !important;
+    z-index:2147483647 !important;
+}
+
+#co_menu_container_wrapper > .custom-mobile-menu-links a{
+    display:inline-block !important;
+    position:relative !important;
+    float:none !important;
+    width:auto !important;
+    height:auto !important;
+    margin:0 !important;
+    padding:6px 8px !important;
+    color:#222 !important;
+    background:transparent !important;
+    font-size:14px !important;
+    font-weight:800 !important;
+    line-height:1.2 !important;
+    text-align:center !important;
+    text-decoration:none !important;
+    visibility:visible !important;
+    opacity:1 !important;
+    pointer-events:auto !important;
+    z-index:2147483647 !important;
+    border:1.8px solid var(--gold) !important;
+border-radius:999px !important;
+box-sizing:border-box !important;
+}
+    /* Submenu (dropdown) items — gold, larger, wraps cleanly */
+   .site-nav-wrapper a[id^="menu_item"],
+.site-nav-wrapper a[id^="menu_item"] span,
+.site-nav-wrapper .co_menu_item a.item,
+.site-nav-wrapper .co_menu_item a.item span,
+.site-nav-wrapper .co_submenu_container a,
+.site-nav-wrapper .co_submenu_container a span,
+.site-nav-wrapper td.co_menu_item div.co_menu_content div.co_submenu_container a,
+.site-nav-wrapper td.co_menu_item div.co_menu_content div.co_submenu_container a span{
+    color:#9f6500 !important;
+font-weight:800 !important;
+}
+    .site-nav-wrapper .co_submenu_container a,
+    .site-nav-wrapper .co_submenu_container a span{
+        display:block !important;
+        white-space:normal !important;
+        max-width:150px !important;
+        line-height:1.3 !important;
+    }
+    .site-nav-wrapper .co_submenu_container a{
+        font-size:30px !important;
+        font-weight:1000 !important;
+    }
+    .site-nav-wrapper .co_submenu_container{
+        position:relative !important;
+        width:190px !important;
+        margin-left:35px !important;
+        margin-top:6px !important;
+        left:-15px !important;
+        border-top:4px solid #000 !important;
+    }
+    .site-nav-wrapper .co_submenu_container .wrapper{
+        width:180px !important;
+    }
+}
+
+@media (min-width:1025px){
+    .co_menu_item a.parent{
+        font-weight:700 !important;
+    }
+    #custom-mobile-menu-links{
+        display:none !important;
+    }
+}
+
+.floating-pushka{
+    position:fixed !important;
+    left:50px !important;
+    bottom:20px !important;
+    top:auto !important;
+    width:207px !important;
+    height:auto !important;
+    z-index:999999 !important;
+    display:block !important;
+    cursor:pointer;
+    text-decoration:none !important;
+    transform-origin:left bottom;
+    transition:transform .24s ease;
+}
+
+/* Hover movement belongs to the whole Pushka link. */
+.floating-pushka:hover,
+.floating-pushka:focus-visible{
+    transform:translateY(-5px) scale(1.045);
+}
+
+.floating-pushka:focus-visible{
+    outline:none;
+}
+
+.floating-pushka-body{
+    position:relative;
+    z-index:3;
+    display:block !important;
+    width:207px !important;
+    height:auto !important;
+    -webkit-filter:none;
+    filter:none;
+    transition:filter .24s ease;
+}
+
+/* A real 1px border placed slightly inside the visible Pushka edges.
+   This keeps the top, right, bottom and left lines equally visible. */
+.floating-pushka::after{
+    content:"";
+    position:absolute;
+
+    /* Inset the line by 1px so it sits directly over the Pushka edge,
+       instead of leaving a transparent gap around the image. */
+    left:48px;
+    top:58px;
+    width:111px;
+    height:163px;
+
+    box-sizing:border-box;
+    border:1px solid var(--gold);
+    border-radius:7px 7px 6px 6px;
+    pointer-events:none;
+    z-index:4;
+    transition:border-color .24s ease, box-shadow .24s ease;
+}
+
+/* On hover, the body gets the soft shape-following shadow and glow.
+   The actual gold border remains crisp and even on every side. */
+.floating-pushka:hover .floating-pushka-body,
+.floating-pushka:focus-visible .floating-pushka-body{
+    -webkit-filter:
+        drop-shadow(0 10px 12px rgba(0,0,0,.18))
+        drop-shadow(0 0 7px rgba(229,169,0,.22));
+    filter:
+        drop-shadow(0 10px 12px rgba(0,0,0,.18))
+        drop-shadow(0 0 7px rgba(229,169,0,.22));
+}
+
+.floating-pushka:hover::after,
+.floating-pushka:focus-visible::after{
+    border-color:var(--gold);
+    box-shadow:0 0 6px rgba(229,169,0,.20);
+}
+
+.pushka-coin{
+    position:absolute;
+    left:50%;
+    top:-60px;
+    z-index:1;
+    width:55px;
+    height:auto;
+    margin-left:-27.5px;
+    pointer-events:none;
+    animation:coinDrop 2s infinite ease-in;
+}
+
+@keyframes coinDrop{
+    0%{
+        transform:translateY(0);
+        opacity:0;
+    }
+    8%{
+        opacity:1;
+    }
+    75%{
+        transform:translateY(105px);
+        opacity:1;
+    }
+    100%{
+        transform:translateY(145px);
+        opacity:0;
+    }
+}
+
+@media (max-width:1024px){
+    body.mobile-menu-scroll-locked{
+        position:fixed !important;
+        left:0 !important;
+        right:0 !important;
+        width:100% !important;
+        overflow:hidden !important;
+        overscroll-behavior:none !important;
+    }
+}
+
+/*<![CDATA[*/
+
+.chabad_updates{
+    position:relative !important;
+    overflow:visible !important;
+}
+
+/* ============================================================
+   DESKTOP NOTICE
+   ============================================================ */
+
+#tisha-bav-prayer-alert{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:11px;
+
+    position:absolute;
+    left:50%;
+    top:-108px;
+    transform:translateX(-50%);
+
+    width:calc(100% - 18px);
+    max-width:374px;
+    min-height:53px;
+    padding:8px 11px 8px 14px;
+    box-sizing:border-box;
+
+    border:2px solid var(--gold);
+    border-radius:12px;
+
+    background:rgba(255,255,255,.95);
+
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+
+    color:#272000 !important;
+    text-align:left;
+    text-decoration:none !important;
+
+    box-shadow:
+        0 9px 24px rgba(0,0,0,.10),
+        0 1px 3px rgba(0,0,0,.06);
+
+    z-index:50;
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        background .2s ease;
+}
+
+#tisha-bav-prayer-alert:hover{
+    transform:
+        translateX(-50%)
+        translateY(-2px);
+
+    background:rgba(255,252,240,.98);
+
+    color:#272000 !important;
+    text-decoration:none !important;
+
+    box-shadow:
+        0 13px 31px rgba(0,0,0,.15),
+        0 2px 6px rgba(0,0,0,.08);
+}
+
+#tisha-bav-prayer-alert:focus{
+    outline:3px solid rgba(229,169,0,.25);
+    outline-offset:3px;
+}
+
+.tisha-bav-alert-content{
+    display:block;
+    flex:1 1 auto;
+    min-width:0;
+}
+
+.tisha-bav-alert-title{
+    display:block;
+    margin:0 0 2px;
+
+    color:#2b2308;
+    font-size:16.5px;
+    line-height:1.18;
+    font-weight:900;
+    letter-spacing:.01em;
+}
+
+.tisha-bav-alert-text{
+    display:block;
+
+    color:#6b6041;
+    font-size:12.5px;
+    line-height:1.25;
+    font-weight:600;
+}
+
+.tisha-bav-alert-arrow{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex:0 0 30px;
+
+    width:30px;
+    height:30px;
+
+    border-radius:50%;
+
+    background:linear-gradient(
+        135deg,
+        var(--gold-grad-1),
+        var(--gold-grad-2)
+    );
+
+    color:#fff;
+    font-size:18px;
+    line-height:1;
+    font-weight:700;
+
+    box-shadow:
+        0 4px 11px
+        rgba(229,169,0,.24);
+
+    transition:transform .2s ease;
+}
+
+#tisha-bav-prayer-alert:hover
+.tisha-bav-alert-arrow{
+    transform:translateX(2px);
+}
+
+/* ============================================================
+   MOBILE PLACEMENT
+
+   JavaScript moves the notice inside the main promo slider.
+   It then floats beneath the promo and above Upcoming Events.
+   ============================================================ */
+
+@media (max-width:700px){
+
+    .hp-table .hp-row-first .promo_slider{
+        position:relative !important;
+        overflow:visible !important;
+        z-index:20 !important;
+    }
+
+    #tisha-bav-prayer-alert.tisha-bav-mobile-location{
+        top:auto !important;
+        bottom:-66px !important;
+        left:50% !important;
+
+        width:calc(100% - 24px) !important;
+        max-width:390px !important;
+        min-height:58px !important;
+
+        gap:10px !important;
+        padding:9px 11px 9px 14px !important;
+
+        border:2px solid var(--gold) !important;
+        border-radius:12px !important;
+
+        transform:translateX(-50%) !important;
+
+        z-index:100 !important;
+    }
+
+    #tisha-bav-prayer-alert.tisha-bav-mobile-location:hover{
+        transform:
+            translateX(-50%)
+            translateY(-2px) !important;
+    }
+
+    .tisha-bav-alert-title{
+        font-size:16px;
+    }
+
+    .tisha-bav-alert-text{
+        font-size:12.5px;
+        line-height:1.25;
+    }
+
+    .tisha-bav-alert-arrow{
+        flex-basis:30px;
+        width:30px;
+        height:30px;
+        font-size:18px;
+    }
+}
+
+/*]]>*/
