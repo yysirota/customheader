@@ -1,0 +1,2345 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap");
+
+
+/* ============================================================
+   SITE-WIDE HEADER REDESIGN — ADDITIVE OVERRIDES
+   Keeps the existing Donate button and mobile drawer behavior.
+   ============================================================ */
+
+:root{
+  --cfle-redesign-gold:#c88719;
+  --cfle-redesign-ink:#1d2230;
+  --cfle-redesign-cream:rgba(255,252,246,.94);
+  --cfle-redesign-shadow:0 8px 28px rgba(55,39,17,.10);
+}
+
+@media (min-width:1025px){
+  #header.cfle-header-redesign,
+  body.scrolled #header.cfle-header-redesign,
+  body:not(.scrolled) #header.cfle-header-redesign{
+    background:var(--cfle-redesign-cream) !important;
+    -webkit-backdrop-filter:blur(14px) saturate(1.08) !important;
+    backdrop-filter:blur(14px) saturate(1.08) !important;
+    box-shadow:0 1px 0 rgba(193,139,44,.13),var(--cfle-redesign-shadow) !important;
+    color:var(--cfle-redesign-ink) !important;
+    transition:background .24s ease,box-shadow .24s ease !important;
+  }
+
+  #header.cfle-header-redesign #header_branding .site_title{
+    display:none !important;
+  }
+
+  #header.cfle-header-redesign #header_branding .site-logo-wrapper{
+    width:150px !important;
+    height:auto !important;
+    margin:0 42px 0 0 !important;
+    padding:0 !important;
+  }
+
+  #header.cfle-header-redesign #header_branding .site-logo-wrapper img{
+    display:block !important;
+    width:150px !important;
+    height:auto !important;
+    max-height:78px !important;
+    object-fit:contain !important;
+    transform:none !important;
+    filter:none !important;
+  }
+
+  #header.cfle-header-redesign .site-nav-wrapper .co_menu_item a.parent{
+    color:#172038 !important;
+    font-family:Georgia,"Times New Roman",serif !important;
+    font-size:16px !important;
+    font-weight:600 !important;
+    letter-spacing:-.01em !important;
+  }
+
+  #header.cfle-header-redesign .site-nav-wrapper .co_menu_item:not(.donate_link) a.parent:hover{
+    color:var(--cfle-redesign-gold) !important;
+  }
+
+  /* The real ChabadOne utility row: Home / About / Ask / Contact / Search / B\"H */
+  #header.cfle-header-redesign .cfle-desktop-utility-row{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:flex-end !important;
+    gap:10px !important;
+    max-height:30px !important;
+    margin:0 !important;
+    padding:5px 0 2px !important;
+    overflow:hidden !important;
+    opacity:1 !important;
+    color:#5f4d39 !important;
+    font-family:Arial,Helvetica,sans-serif !important;
+    font-size:10px !important;
+    line-height:1 !important;
+    text-transform:uppercase !important;
+    transition:max-height .24s ease,opacity .18s ease,padding .24s ease !important;
+  }
+
+  #header.cfle-header-redesign .cfle-desktop-utility-row a{
+    color:#4d4338 !important;
+    font-size:10px !important;
+    font-weight:700 !important;
+    letter-spacing:.015em !important;
+    text-decoration:none !important;
+  }
+
+  #header.cfle-header-redesign .cfle-desktop-utility-row a:hover{
+    color:var(--cfle-redesign-gold) !important;
+  }
+
+  body.scrolled #header.cfle-header-redesign .cfle-desktop-utility-row{
+    max-height:0 !important;
+    padding-top:0 !important;
+    padding-bottom:0 !important;
+    opacity:0 !important;
+    pointer-events:none !important;
+  }
+}
+
+@media (max-width:1024px){
+  #header.cfle-header-redesign .cfle-desktop-utility-row{
+    display:none !important;
+  }
+  /* Do not add Home / Ask-the-Rabbi / B\"H to mobile. Existing drawer bottom links stay untouched. */
+}
+
+/* ============================================================
+   HOMEPAGE ONLY — FOUNDATION
+   ============================================================ */
+
+#cfle-home-v2,
+#cfle-home-v2 *{
+  box-sizing:border-box !important;
+}
+
+#cfle-home-v2{
+  --cfle-ink:#211a14;
+  --cfle-text:#514941;
+
+  --cfle-gold:#b8791a;
+  --cfle-gold-2:#c99533;
+  --cfle-gold-3:#d8ac58;
+  --cfle-line:#ddbd78;
+
+  --cfle-ivory:#fffdf8;
+  --cfle-cream:#fbf6eb;
+  --cfle-cream-2:#f7edd9;
+
+  --cfle-serif:
+    "Playfair Display",
+    Georgia,
+    "Times New Roman",
+    serif;
+
+  --cfle-sans:
+    "Lato",
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  position:relative !important;
+
+  display:block !important;
+
+  width:100% !important;
+
+  margin:0 !important;
+  padding:0 !important;
+
+  overflow:hidden !important;
+
+  background:
+    var(--cfle-ivory) !important;
+
+  color:
+    var(--cfle-ink) !important;
+
+  font-family:
+    var(--cfle-sans) !important;
+
+  font-size:17px !important;
+  line-height:1.45 !important;
+
+  -webkit-text-size-adjust:100%;
+}
+
+
+/* Native homepage stays alive as our data source */
+
+body.cfle-home-v2-active .hp-table,
+body.cfle-home-v2-active .hp_content_wrapper{
+  visibility:hidden !important;
+}
+
+.cfle-v2-native-source{
+  position:absolute !important;
+
+  left:-10000px !important;
+  top:0 !important;
+
+  display:block !important;
+
+  width:1100px !important;
+  height:1px !important;
+
+  margin:0 !important;
+  padding:0 !important;
+
+  overflow:hidden !important;
+
+  pointer-events:none !important;
+}
+
+
+/* ============================================================
+   HERO
+   ============================================================ */
+
+#cfle-home-v2 .cfle-v2-hero{
+  position:relative !important;
+
+  isolation:isolate !important;
+
+  min-height:620px !important;
+
+  padding:
+    118px
+    48px
+    118px !important;
+
+  overflow:hidden !important;
+
+  background:
+    radial-gradient(
+      ellipse at 82% 18%,
+      rgba(249,211,132,.62) 0%,
+      rgba(249,211,132,.25) 34%,
+      rgba(249,211,132,0) 67%
+    ),
+    radial-gradient(
+      ellipse at 98% 43%,
+      rgba(200,145,43,.19) 0%,
+      rgba(200,145,43,0) 63%
+    ),
+    radial-gradient(
+      ellipse at 1% 32%,
+      rgba(205,151,54,.13) 0%,
+      rgba(205,151,54,0) 58%
+    ),
+    linear-gradient(
+      180deg,
+      #fdf7ea 0%,
+      #fffaf1 52%,
+      #fffdf8 100%
+    ) !important;
+}
+
+
+/* Soft atmospheric glow */
+
+#cfle-home-v2 .cfle-v2-hero:before{
+  content:"" !important;
+
+  position:absolute !important;
+
+  inset:0 !important;
+
+  z-index:-2 !important;
+
+  pointer-events:none !important;
+
+  opacity:.55 !important;
+
+  background:
+    radial-gradient(
+      circle at 95% 22%,
+      rgba(190,133,34,.12) 0 4%,
+      transparent 11%
+    ),
+    radial-gradient(
+      circle at 90% 9%,
+      rgba(198,144,47,.08) 0 5%,
+      transparent 14%
+    ),
+    radial-gradient(
+      circle at 3% 9%,
+      rgba(188,130,33,.10) 0 4%,
+      transparent 12%
+    ) !important;
+
+  filter:
+    blur(7px) !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-hero-inner{
+  position:relative !important;
+
+  z-index:2 !important;
+
+  display:grid !important;
+
+  grid-template-columns:
+    minmax(340px,.43fr)
+    minmax(460px,.57fr) !important;
+
+  align-items:center !important;
+
+  width:100% !important;
+  max-width:1380px !important;
+
+  margin:
+    0
+    auto !important;
+}
+
+
+/* ============================================================
+   HERO COPY
+   ============================================================ */
+
+#cfle-home-v2 .cfle-v2-hero-copy{
+  position:relative !important;
+
+  z-index:3 !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-eyebrow{
+  display:flex !important;
+
+  align-items:center !important;
+
+  gap:17px !important;
+
+  margin:
+    0
+    0
+    14px !important;
+
+  color:
+    var(--cfle-gold) !important;
+
+  font-family:
+    var(--cfle-sans) !important;
+
+  font-size:17px !important;
+  line-height:1 !important;
+
+  font-weight:500 !important;
+
+  letter-spacing:.32em !important;
+
+  text-transform:uppercase !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-eyebrow:after{
+  content:"" !important;
+
+  display:block !important;
+
+  width:67px !important;
+  height:1px !important;
+
+  background:
+    var(--cfle-line) !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-title{
+  margin:0 !important;
+  padding:0 !important;
+
+  color:
+    var(--cfle-ink) !important;
+
+  font-family:
+    var(--cfle-serif) !important;
+
+  font-size:
+    clamp(68px,7vw,112px) !important;
+
+  line-height:.92 !important;
+
+  font-weight:600 !important;
+
+  letter-spacing:-.045em !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-title-dark{
+  display:block !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-title-gold{
+  display:block !important;
+
+  padding-bottom:.08em !important;
+
+  color:
+    #b87a1d !important;
+
+  font-style:italic !important;
+
+  font-weight:500 !important;
+}
+
+
+@supports ((-webkit-background-clip:text) or (background-clip:text)){
+
+  #cfle-home-v2 .cfle-v2-title-gold{
+    background:
+      linear-gradient(
+        100deg,
+        #a86a10 0%,
+        #d5a64d 48%,
+        #b4791b 100%
+      ) !important;
+
+    -webkit-background-clip:text !important;
+    background-clip:text !important;
+
+    -webkit-text-fill-color:transparent !important;
+    color:transparent !important;
+  }
+}
+
+
+/* ============================================================
+   HERO BUILDING
+   ============================================================ */
+
+#cfle-home-v2 .cfle-v2-building-wrap{
+  position:relative !important;
+
+  z-index:2 !important;
+
+  display:flex !important;
+
+  align-items:center !important;
+  justify-content:center !important;
+
+  min-width:0 !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-building{
+  display:block !important;
+
+  width:100% !important;
+  max-width:780px !important;
+
+  height:auto !important;
+  max-height:430px !important;
+
+  margin:0 !important;
+  padding:0 !important;
+
+  object-fit:contain !important;
+  object-position:center center !important;
+
+  border:0 !important;
+
+  background:none !important;
+
+  box-shadow:none !important;
+
+  mix-blend-mode:multiply !important;
+}
+
+
+/* ============================================================
+   HERO GOLD ARCS
+   ============================================================ */
+
+#cfle-home-v2 .cfle-v2-hero-arcs{
+  position:absolute !important;
+
+  inset:0 !important;
+
+  width:100% !important;
+  height:100% !important;
+
+  pointer-events:none !important;
+
+  z-index:1 !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-hero-arcs path{
+  fill:none !important;
+
+  stroke:
+    #c6983b !important;
+
+  stroke-width:1.25 !important;
+
+  vector-effect:
+    non-scaling-stroke !important;
+
+  opacity:.78 !important;
+}
+
+
+/* ============================================================
+   HERO BOTTOM CURVE
+   IMPORTANT: DESKTOP + MOBILE BOTH USE THIS
+   ============================================================ */
+
+#cfle-home-v2 .cfle-v2-hero-curve{
+  position:absolute !important;
+
+  left:0 !important;
+  right:0 !important;
+  bottom:-1px !important;
+
+  z-index:4 !important;
+
+  display:block !important;
+
+  width:100% !important;
+  height:125px !important;
+
+  pointer-events:none !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-curve-fill{
+  fill:
+    var(--cfle-ivory) !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-curve-gold{
+  fill:none !important;
+
+  stroke:
+    #c89536 !important;
+
+  stroke-width:1.35 !important;
+
+  vector-effect:
+    non-scaling-stroke !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-curve-soft{
+  fill:none !important;
+
+  stroke:
+    #e4c985 !important;
+
+  stroke-width:.9 !important;
+
+  vector-effect:
+    non-scaling-stroke !important;
+
+  opacity:.72 !important;
+}
+
+
+/* ============================================================
+   SHARED SECTION HEADING
+   ============================================================ */
+
+#cfle-home-v2 .cfle-v2-section-title{
+  display:flex !important;
+
+  align-items:center !important;
+  justify-content:center !important;
+
+  gap:22px !important;
+
+  margin:
+    0
+    auto
+    27px !important;
+
+  color:
+    var(--cfle-gold) !important;
+
+  font-family:
+    var(--cfle-serif) !important;
+
+  font-size:18px !important;
+  line-height:1 !important;
+
+  font-weight:500 !important;
+
+  letter-spacing:.24em !important;
+
+  text-align:center !important;
+
+  text-transform:uppercase !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-section-title:before,
+#cfle-home-v2 .cfle-v2-section-title:after{
+  content:"" !important;
+
+  display:block !important;
+
+  width:54px !important;
+  height:1px !important;
+
+  background:
+    var(--cfle-line) !important;
+}
+
+
+/* ============================================================
+   UPCOMING EVENTS
+   ============================================================ */
+
+#cfle-home-v2 .cfle-v2-events{
+  position:relative !important;
+
+  z-index:5 !important;
+
+  padding:
+    22px
+    48px
+    42px !important;
+
+  background:
+    var(--cfle-ivory) !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-events-grid{
+  display:grid !important;
+
+  grid-template-columns:
+    repeat(2,minmax(0,1fr)) !important;
+
+  gap:27px !important;
+
+  width:100% !important;
+  max-width:1220px !important;
+
+  margin:
+    0
+    auto !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-event{
+  display:flex !important;
+
+  align-items:center !important;
+
+  gap:22px !important;
+
+  min-height:113px !important;
+
+  padding:
+    13px
+    20px !important;
+
+  border:
+    1px solid
+    #ead6a6 !important;
+
+  border-radius:14px !important;
+
+  background:
+    linear-gradient(
+      180deg,
+      #fffefb 0%,
+      #fffaf1 100%
+    ) !important;
+
+  color:
+    var(--cfle-ink) !important;
+
+  text-decoration:none !important;
+
+  box-shadow:
+    0 3px 12px
+    rgba(100,68,15,.025) !important;
+
+  transition:
+    transform .2s ease,
+    border-color .2s ease,
+    box-shadow .2s ease !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-event:hover{
+  transform:
+    translateY(-2px) !important;
+
+  border-color:
+    #d6ac51 !important;
+
+  box-shadow:
+    0 9px 21px
+    rgba(100,68,15,.08) !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-date{
+  flex:
+    0 0 92px !important;
+
+  display:flex !important;
+
+  flex-direction:column !important;
+
+  align-items:center !important;
+  justify-content:center !important;
+
+  min-height:82px !important;
+
+  padding:
+    8px
+    7px !important;
+
+  border:
+    1px solid
+    #e3c77f !important;
+
+  border-radius:10px !important;
+
+  background:
+    #fffefb !important;
+
+  text-align:center !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-date-month,
+#cfle-home-v2 .cfle-v2-date-dayname{
+  color:
+    var(--cfle-gold) !important;
+
+  font-family:
+    var(--cfle-sans) !important;
+
+  font-size:13px !important;
+  line-height:1 !important;
+
+  font-weight:700 !important;
+
+  letter-spacing:.055em !important;
+
+  text-transform:uppercase !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-date-number{
+  margin:
+    5px
+    0
+    4px !important;
+
+  color:
+    var(--cfle-ink) !important;
+
+  font-family:
+    var(--cfle-serif) !important;
+
+  font-size:36px !important;
+  line-height:.95 !important;
+
+  font-weight:700 !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-event-copy{
+  flex:
+    1 1 auto !important;
+
+  min-width:0 !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-event-name{
+  display:block !important;
+
+  color:
+    var(--cfle-ink) !important;
+
+  font-family:
+    var(--cfle-serif) !important;
+
+  font-size:27px !important;
+  line-height:1.12 !important;
+
+  font-weight:700 !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-event-time{
+  display:block !important;
+
+  margin-top:5px !important;
+
+  color:
+    #62584e !important;
+
+  font-family:
+    var(--cfle-sans) !important;
+
+  font-size:17px !important;
+  line-height:1.25 !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-event-arrow{
+  flex:
+    0 0 38px !important;
+
+  display:flex !important;
+
+  align-items:center !important;
+  justify-content:center !important;
+
+  width:38px !important;
+  height:38px !important;
+
+  border:
+    1.5px solid
+    var(--cfle-gold-2) !important;
+
+  border-radius:50% !important;
+
+  color:
+    var(--cfle-gold) !important;
+
+  font-size:28px !important;
+  line-height:1 !important;
+
+  transition:
+    transform .2s ease !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-event:hover
+.cfle-v2-event-arrow{
+  transform:
+    translateX(3px) !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-events-more-wrap{
+  margin:
+    25px
+    0
+    0 !important;
+
+  text-align:center !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-events-more{
+  display:inline-flex !important;
+
+  align-items:center !important;
+  justify-content:center !important;
+
+  gap:10px !important;
+
+  min-height:42px !important;
+
+  padding:
+    8px
+    27px !important;
+
+  border:
+    1.5px solid
+    var(--cfle-gold-2) !important;
+
+  border-radius:999px !important;
+
+  background:
+    var(--cfle-ivory) !important;
+
+  color:
+    var(--cfle-ink) !important;
+
+  font-family:
+    var(--cfle-serif) !important;
+
+  font-size:16px !important;
+  line-height:1.2 !important;
+
+  text-decoration:none !important;
+}
+
+
+/* ============================================================
+   PRAYER / SHABBAT AREA
+   ============================================================ */
+
+#cfle-home-v2 .cfle-v2-info{
+  position:relative !important;
+
+  padding:
+    30px
+    48px
+    68px !important;
+
+  background:
+    var(--cfle-ivory) !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-info-inner{
+  display:grid !important;
+
+  grid-template-columns:
+    minmax(0,1.45fr)
+    minmax(390px,.8fr) !important;
+
+  align-items:start !important;
+
+  width:100% !important;
+  max-width:1220px !important;
+
+  margin:
+    0
+    auto !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-prayer{
+  padding-right:45px !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-shabbat{
+  padding-left:45px !important;
+
+  border-left:
+    1px solid
+    #e4dac2 !important;
+}
+
+
+/* Center BOTH headers over their content */
+
+#cfle-home-v2 .cfle-v2-icon-heading{
+  display:flex !important;
+
+  align-items:center !important;
+  justify-content:center !important;
+
+  gap:13px !important;
+
+  width:100% !important;
+
+  margin:
+    0
+    0
+    31px !important;
+
+  color:
+    var(--cfle-gold) !important;
+
+  font-family:
+    var(--cfle-serif) !important;
+
+  font-size:18px !important;
+  line-height:1.1 !important;
+
+  font-weight:500 !important;
+
+  letter-spacing:.21em !important;
+
+  text-align:center !important;
+
+  text-transform:uppercase !important;
+}
+
+
+/* No line after Prayer Times */
+
+#cfle-home-v2 .cfle-v2-icon-heading:before,
+#cfle-home-v2 .cfle-v2-icon-heading:after{
+  content:none !important;
+  display:none !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-icon-heading svg{
+  flex:
+    0 0 auto !important;
+
+  width:31px !important;
+  height:31px !important;
+
+  fill:none !important;
+
+  stroke:
+    var(--cfle-gold) !important;
+
+  stroke-width:2 !important;
+
+  stroke-linecap:round !important;
+  stroke-linejoin:round !important;
+}
+
+
+/* ============================================================
+   PRAYER COLUMNS
+   ============================================================ */
+
+#cfle-home-v2 .cfle-v2-prayer-columns{
+  display:grid !important;
+
+  grid-template-columns:
+    repeat(2,minmax(0,1fr)) !important;
+
+  align-items:start !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-prayer-group{
+  min-width:0 !important;
+
+  padding:
+    0
+    32px !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-prayer-group:first-child{
+  padding-left:0 !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-prayer-group +
+.cfle-v2-prayer-group{
+  border-left:
+    1px solid
+    #e4dac2 !important;
+}
+
+
+/* Shacharit and Mincha/Maariv same vertical level */
+
+#cfle-home-v2 .cfle-v2-prayer-name{
+  min-height:30px !important;
+
+  margin:
+    0
+    0
+    13px !important;
+
+  padding:0 !important;
+
+  color:
+    var(--cfle-ink) !important;
+
+  font-family:
+    var(--cfle-serif) !important;
+
+  font-size:22px !important;
+  line-height:1.25 !important;
+
+  font-weight:700 !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-prayer-rows{
+  display:grid !important;
+
+  grid-template-columns:
+    max-content
+    12px
+    minmax(0,1fr) !important;
+
+  column-gap:9px !important;
+  row-gap:8px !important;
+
+  color:
+    #645b52 !important;
+
+  font-size:17px !important;
+  line-height:1.35 !important;
+}
+
+
+/* ============================================================
+   SHABBAT CARD
+   ============================================================ */
+
+#cfle-home-v2 .cfle-v2-shabbat-card{
+  visibility:hidden !important;
+
+  padding:
+    16px
+    20px
+    14px !important;
+
+  border:
+    1px solid
+    #ebd8aa !important;
+
+  border-radius:12px !important;
+
+  background:
+    linear-gradient(
+      180deg,
+      #fdf7e8 0%,
+      #faf1dd 100%
+    ) !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-shabbat-card.cfle-v2-ready{
+  visibility:visible !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-candle-heading{
+  display:flex !important;
+
+  align-items:center !important;
+  justify-content:center !important;
+
+  gap:12px !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-candle-heading svg{
+  width:30px !important;
+  height:30px !important;
+
+  flex:
+    0 0 auto !important;
+
+  fill:none !important;
+
+  stroke:
+    var(--cfle-gold) !important;
+
+  stroke-width:2 !important;
+
+  stroke-linecap:round !important;
+  stroke-linejoin:round !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-candle-title{
+  margin:0 !important;
+  padding:0 !important;
+
+  color:
+    var(--cfle-ink) !important;
+
+  font-family:
+    var(--cfle-serif) !important;
+
+  font-size:19px !important;
+  line-height:1.2 !important;
+
+  font-weight:700 !important;
+
+  text-align:left !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-location{
+  margin:
+    2px
+    0
+    0 !important;
+
+  padding:0 !important;
+
+  color:
+    #61584f !important;
+
+  font-size:14px !important;
+  line-height:1.2 !important;
+}
+
+
+/* Actual live times */
+
+#cfle-home-v2 .cfle-v2-times{
+  margin-top:11px !important;
+
+  padding-top:9px !important;
+
+  border-top:
+    1px solid
+    #eddbae !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-time-row{
+  display:grid !important;
+
+  grid-template-columns:
+    50px
+    1px
+    88px
+    1px
+    minmax(0,1fr) !important;
+
+  align-items:center !important;
+
+  gap:9px !important;
+
+  padding:
+    6px
+    0 !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-time-date{
+  color:
+    var(--cfle-gold) !important;
+
+  font-size:14px !important;
+  line-height:1.2 !important;
+
+  font-weight:600 !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-divider{
+  display:block !important;
+
+  width:1px !important;
+  height:20px !important;
+
+  background:
+    var(--cfle-line) !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-time-value{
+  color:
+    var(--cfle-gold) !important;
+
+  font-family:
+    var(--cfle-serif) !important;
+
+  font-size:19px !important;
+  line-height:1 !important;
+
+  font-weight:700 !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-time-label{
+  min-width:0 !important;
+
+  color:
+    #61584f !important;
+
+  font-size:13px !important;
+  line-height:1.25 !important;
+}
+
+
+/* Weekly Torah portion = LAST thing in beige card */
+
+#cfle-home-v2 .cfle-v2-torah{
+  margin-top:10px !important;
+
+  padding-top:11px !important;
+
+  border-top:
+    1px solid
+    #eddbae !important;
+
+  text-align:center !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-torah-title{
+  margin:0 !important;
+  padding:0 !important;
+
+  color:
+    var(--cfle-gold) !important;
+
+  font-family:
+    var(--cfle-serif) !important;
+
+  font-size:16px !important;
+  line-height:1.2 !important;
+
+  font-weight:700 !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-torah-name{
+  margin:
+    3px
+    0
+    0 !important;
+
+  padding:0 !important;
+
+  color:
+    var(--cfle-ink) !important;
+
+  font-family:
+    var(--cfle-serif) !important;
+
+  font-size:16px !important;
+  line-height:1.25 !important;
+}
+
+
+/* ============================================================
+   DECORATIVE GOLD BOKEH BAND
+   ============================================================ */
+
+#cfle-home-v2 .cfle-v2-band{
+  position:relative !important;
+
+  height:
+    clamp(220px,26vw,360px) !important;
+
+  overflow:hidden !important;
+
+  background:
+    radial-gradient(
+      circle at 8% 34%,
+      rgba(255,238,188,.95) 0 3%,
+      rgba(255,238,188,0) 8%
+    ),
+    radial-gradient(
+      circle at 23% 66%,
+      rgba(255,218,130,.88) 0 3%,
+      rgba(255,218,130,0) 8%
+    ),
+    radial-gradient(
+      circle at 39% 31%,
+      rgba(255,237,190,.76) 0 2%,
+      rgba(255,237,190,0) 7%
+    ),
+    radial-gradient(
+      circle at 55% 72%,
+      rgba(255,224,150,.78) 0 3%,
+      rgba(255,224,150,0) 8%
+    ),
+    radial-gradient(
+      circle at 78% 34%,
+      rgba(255,238,195,.74) 0 3%,
+      rgba(255,238,195,0) 8%
+    ),
+    radial-gradient(
+      circle at 94% 68%,
+      rgba(255,213,120,.65) 0 3%,
+      rgba(255,213,120,0) 9%
+    ),
+    linear-gradient(
+      120deg,
+      #f1dba6 0%,
+      #ddb365 47%,
+      #b9843f 100%
+    ) !important;
+}
+
+
+/* top white wave */
+
+#cfle-home-v2 .cfle-v2-band-top{
+  position:absolute !important;
+
+  left:0 !important;
+  top:-1px !important;
+
+  display:block !important;
+
+  width:100% !important;
+  height:88px !important;
+}
+
+
+/* bottom ribbon */
+
+#cfle-home-v2 .cfle-v2-band-bottom{
+  position:absolute !important;
+
+  left:0 !important;
+  bottom:-1px !important;
+
+  display:block !important;
+
+  width:100% !important;
+  height:102px !important;
+}
+
+
+/* ============================================================
+   MAILING LIST
+   ============================================================ */
+
+#cfle-home-v2 .cfle-v2-mailing{
+  position:relative !important;
+
+  padding:
+    5px
+    48px
+    58px !important;
+
+  background:
+    radial-gradient(
+      circle at 10% 35%,
+      rgba(255,192,91,.20),
+      rgba(255,192,91,0) 18%
+    ),
+    radial-gradient(
+      circle at 91% 34%,
+      rgba(255,187,87,.18),
+      rgba(255,187,87,0) 20%
+    ),
+    linear-gradient(
+      180deg,
+      #5b3d17 0%,
+      #452e0f 55%,
+      #39260d 100%
+    ) !important;
+
+  color:
+    #fff7e7 !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-mail-title{
+  display:flex !important;
+
+  align-items:center !important;
+  justify-content:center !important;
+
+  gap:17px !important;
+
+  margin:
+    0
+    auto
+    10px !important;
+
+  color:
+    #efd18b !important;
+
+  font-family:
+    var(--cfle-serif) !important;
+
+  font-size:18px !important;
+  line-height:1 !important;
+
+  font-weight:500 !important;
+
+  letter-spacing:.22em !important;
+
+  text-align:center !important;
+
+  text-transform:uppercase !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-mail-title:before,
+#cfle-home-v2 .cfle-v2-mail-title:after{
+  content:"" !important;
+
+  display:block !important;
+
+  width:46px !important;
+  height:1px !important;
+
+  background:
+    #cda75c !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-mail-title svg{
+  width:27px !important;
+  height:27px !important;
+
+  fill:none !important;
+
+  stroke:
+    #efd18b !important;
+
+  stroke-width:2 !important;
+
+  stroke-linecap:round !important;
+  stroke-linejoin:round !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-mail-sub{
+  margin:
+    0
+    0
+    19px !important;
+
+  padding:0 !important;
+
+  color:
+    #f7ecda !important;
+
+  font-size:15px !important;
+  line-height:1.35 !important;
+
+  text-align:center !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-mail-slot{
+  width:100% !important;
+  max-width:1050px !important;
+
+  margin:
+    0
+    auto !important;
+}
+
+
+/* flatten only layout wrappers inside real native form */
+
+#cfle-home-v2 .cfle-v2-mail-slot > *{
+  display:flex !important;
+
+  align-items:stretch !important;
+  justify-content:center !important;
+
+  flex-wrap:wrap !important;
+
+  gap:10px !important;
+
+  width:100% !important;
+
+  margin:0 !important;
+  padding:0 !important;
+
+  border:0 !important;
+
+  background:none !important;
+
+  box-shadow:none !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-mail-slot div,
+#cfle-home-v2 .cfle-v2-mail-slot span,
+#cfle-home-v2 .cfle-v2-mail-slot p,
+#cfle-home-v2 .cfle-v2-mail-slot fieldset,
+#cfle-home-v2 .cfle-v2-mail-slot table,
+#cfle-home-v2 .cfle-v2-mail-slot tbody,
+#cfle-home-v2 .cfle-v2-mail-slot tr,
+#cfle-home-v2 .cfle-v2-mail-slot td{
+  display:contents !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-mail-slot input[type="text"],
+#cfle-home-v2 .cfle-v2-mail-slot input[type="email"],
+#cfle-home-v2 .cfle-v2-mail-slot input:not([type]){
+  flex:
+    1 1 180px !important;
+
+  width:auto !important;
+  min-width:0 !important;
+
+  height:48px !important;
+
+  margin:0 !important;
+
+  padding:
+    0
+    15px !important;
+
+  border:
+    1px solid
+    #e9d8ad !important;
+
+  border-radius:5px !important;
+
+  background:
+    #fffdf9 !important;
+
+  color:
+    #282018 !important;
+
+  font-family:
+    var(--cfle-sans) !important;
+
+  font-size:15px !important;
+
+  box-shadow:none !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-mail-slot input[type="email"],
+#cfle-home-v2 .cfle-v2-mail-slot input[name*="mail" i],
+#cfle-home-v2 .cfle-v2-mail-slot input[placeholder*="mail" i]{
+  flex:
+    1.45 1 240px !important;
+}
+
+
+#cfle-home-v2 .cfle-v2-mail-slot button,
+#cfle-home-v2 .cfle-v2-mail-slot input[type="submit"],
+#cfle-home-v2 .cfle-v2-mail-slot input[type="button"]{
+  flex:
+    0 0 160px !important;
+
+  width:160px !important;
+  height:48px !important;
+
+  margin:0 !important;
+  padding:0 18px !important;
+
+  border:
+    1px solid
+    #e7c36b !important;
+
+  border-radius:5px !important;
+
+  background:
+    linear-gradient(
+      135deg,
+      #d6a348,
+      #ad741a
+    ) !important;
+
+  color:
+    #fffaf1 !important;
+
+  font-family:
+    var(--cfle-serif) !important;
+
+  font-size:17px !important;
+
+  text-transform:none !important;
+
+  cursor:pointer !important;
+}
+
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+
+@media (max-width:1000px){
+
+  #cfle-home-v2 .cfle-v2-hero{
+    min-height:560px !important;
+
+    padding:
+      108px
+      28px
+      104px !important;
+  }
+
+  #cfle-home-v2 .cfle-v2-hero-inner{
+    grid-template-columns:
+      minmax(280px,.44fr)
+      minmax(390px,.56fr) !important;
+  }
+
+  #cfle-home-v2 .cfle-v2-info-inner{
+    grid-template-columns:
+      minmax(0,1.25fr)
+      minmax(330px,.8fr) !important;
+  }
+
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width:760px){
+
+  #cfle-home-v2{
+    font-size:16px !important;
+  }
+
+
+  #cfle-home-v2 .cfle-v2-hero{
+    min-height:0 !important;
+
+    padding:
+      98px
+      18px
+      74px !important;
+  }
+
+
+  #cfle-home-v2 .cfle-v2-hero-inner{
+    display:block !important;
+
+    text-align:center !important;
+  }
+
+
+  #cfle-home-v2 .cfle-v2-eyebrow{
+    justify-content:center !important;
+
+    gap:11px !important;
+
+    margin-bottom:9px !important;
+
+    font-size:12px !important;
+
+    letter-spacing:.27em !important;
+  }
+
+
+  #cfle-home-v2 .cfle-v2-eyebrow:before{
+    content:"" !important;
+
+    display:block !important;
+
+    width:25px !important;
+    height:1px !important;
+
+    background:
+      var(--cfle-line) !important;
+  }
+
+
+  #cfle-home-v2 .cfle-v2-eyebrow:after{
+    width:25px !important;
+  }
+
+
+  #cfle-home-v2 .cfle-v2-title{
+    font-size:
+      clamp(47px,14vw,68px) !important;
+
+    line-height:.91 !important;
+  }
+
+
+  #cfle-home-v2 .cfle-v2-title-gold{
+    display:block !important;
+  }
+
+
+  #cfle-home-v2 .cfle-v2-building-wrap{
+    margin:
+      18px
+      -7px
+      -2px !important;
+  }
+
+
+  #cfle-home-v2 .cfle-v2-building{
+    width:104% !important;
+    max-width:520px !important;
+    max-height:250px !important;
+  }
+
+
+  #cfle-home-v2 .cfle-v2-hero-arcs{
+    display:none !important;
+  }
+
+
+  /*
+   * IMPORTANT:
+   * This is deliberately still CURVED on mobile.
+   * Do not replace this SVG with a flat line.
+   */
+
+  #cfle-home-v2 .cfle-v2-hero-curve{
+    height:68px !important;
+  }
+
+
+  /* EVENTS */
+
+  #cfle-home-v2 .cfle-v2-events{
+    padding:
+      18px
+      13px
+      32px !important;
+  }
+
+
+  #cfle-home-v2 .cfle-v2-section-title{
+    gap:10px !important;
+
+    margin-bottom:17px !important;
+
+    font-size:12px !important;
+
+    letter-spacing:.18em !important;
+  }
+
+
+  #cfle-home-v2 .cfle-v2-section-title:before,
+  #cfle-home-v2 .cfle-v2-section-title:after{
+    width:30px !important;
+  }
+
+
+  #cfle-home-v2 .cfle-v2-events-grid{
+    grid-template-columns:1fr !important;
+
+    gap:10px !important;
+  }
+
+
+  #cfle-home-v2 .cfle-v2-event{
+    min-height:84px !important;
+
+    gap:13px !important;
+
+    padding:
+      9px
+      10px !important;
+
+    border-radius:11px !important;
+  }
+
+
+  #cfle-home-v2 .cfle-v2-date{
+    flex-basis:70px !important;
+
+    min-height:66px !important;
+
+    padding:6px !important;
+  }
+
+
+  #cfle-home-v2 .cfle-v2-date-month,
+  #cfle-home-v2 .cfle-v2-date-dayname{
+    font-size:10px !important;
+  }
+
+
+  #cfle-home-v2 .cfle-v2-date-number{
+    font-size:27px !important;
+  }
+
+
+  #cfle-home-v2 .cfle-v2-event-name{
+    font-size:20px !important;
+  }
+
+
+  #cfle-home-v2 .cfle-v2-event-time{
+    font-size:13px !important;
+  }
+
+
+  #cfle-home-v2 .cfle-v2-event-arrow{
+    flex-basis:29px !important;
+
+    width:29px !important;
+    height:29px !important;
+
+    font-size:22px !important;
+  }
+
+
+  #cfle-home-v2 .cfle-v2-events-more-wrap{
+    margin-top:14px !important;
+  }
+
+
+  #cfle-home-v2 .cfle-v2-events-more{
+    min-height:37px !important;
+
+    padding:
+      7px
+      18px !important;
+
+    font-size:13px !important;
+  }
+
+
+  /* INFO */
+
+  #cfle-home-v2 .cfle-v2-info{
+    padding:
+      28px
+      18px
+      47px !important;
+  }
+
+
+  #cfle-home-v2 .cfle-v2-info-inner{
+    display:block !important;
+  }
+
+
+  #cfle-home-v2 .cfle-v2-prayer{
+    padding:0 !important;
+  }
+
+
+  #cfle-home-v2 .cfle-v2-shabbat{
+    margin-top:35px !important;
+
+    padding:
+      28px
+      0
+      0 !important;
+
+    border-left:0 !important;
+
+    border-top:
+      1px solid
+      #e5dcc7 !important;
+  }
+
+
+  #cfle-home-v2 .cfle-v2-icon-heading{
+    margin-bottom:22px !important;
+
+    font-size:14px !important;
+
+    letter-spacing:.18em !important;
+  }
+
+
+  #cfle-home-v2 .cfle-v2-icon-heading svg{
+    width:27px !important;
+    height:27px !important;
+  }
+
+
+  #cfle-home-v2 .cfle-v2-prayer-columns{
+    display:block !important;
+  }
+
+
+  #cfle-home-v2 .cfle-v2-prayer-group{
+    padding:0 !important;
+  }
+
+
+  #cfle-home-v2 .cfle-v2-prayer-group +
+  .cfle-v2-prayer-group{
+    margin-top:20px !important;
+
+    padding-top:20px !important;
+
+    border-left:0 !important;
+
+    border-top:
+      1px solid
+      #e4dac2 !important;
+  }
+
+
+  #cfle-home-v2 .cfle-v2-prayer-name{
+    min-height:0 !important;
+
+    margin-bottom:9px !important;
+
+    font-size:18px !important;
+  }
+
+
+  #cfle-home-v2 .cfle-v2-prayer-rows{
+    font-size:14px !important;
+
+    row-gap:5px !important;
+  }
+
+
+  #cfle-home-v2 .cfle-v2-shabbat-card{
+    max-width:500px !important;
+
+    margin:
+      0
+      auto !important;
+
+    padding:
+      14px
+      12px !important;
+  }
+
+
+  #cfle-home-v2 .cfle-v2-candle-title{
+    font-size:17px !important;
+  }
+
+
+  #cfle-home-v2 .cfle-v2-location{
+    font-size:12px !important;
+  }
+
+
+  #cfle-home-v2 .cfle-v2-time-row{
+    grid-template-columns:
+      42px
+      1px
+      73px
+      1px
+      minmax(0,1fr) !important;
+
+    gap:6px !important;
+
+    padding:
+      5px
+      0 !important;
+  }
+
+
+  #cfle-home-v2 .cfle-v2-time-date{
+    font-size:12px !important;
+  }
+
+
+  #cfle-home-v2 .cfle-v2-time-value{
+    font-size:16px !important;
+  }
+
+
+  #cfle-home-v2 .cfle-v2-time-label{
+    font-size:11px !important;
+  }
+
+
+  #cfle-home-v2 .cfle-v2-torah-title,
+  #cfle-home-v2 .cfle-v2-torah-name{
+    font-size:14px !important;
+  }
+
+
+  /* GOLD BAND */
+
+  #cfle-home-v2 .cfle-v2-band{
+    height:185px !important;
+  }
+
+
+  #cfle-home-v2 .cfle-v2-band-top{
+    height:57px !important;
+  }
+
+
+  #cfle-home-v2 .cfle-v2-band-bottom{
+    height:64px !important;
+  }
+
+
+  /* MAILING */
+
+  #cfle-home-v2 .cfle-v2-mailing{
+    padding:
+      5px
+      16px
+      35px !important;
+  }
+
+
+  #cfle-home-v2 .cfle-v2-mail-title{
+    gap:9px !important;
+
+    font-size:13px !important;
+
+    letter-spacing:.16em !important;
+  }
+
+
+  #cfle-home-v2 .cfle-v2-mail-title:before,
+  #cfle-home-v2 .cfle-v2-mail-title:after{
+    width:26px !important;
+  }
+
+
+  #cfle-home-v2 .cfle-v2-mail-sub{
+    margin-bottom:15px !important;
+
+    font-size:12px !important;
+  }
+
+
+  #cfle-home-v2 .cfle-v2-mail-slot > *{
+    display:block !important;
+  }
+
+
+  #cfle-home-v2 .cfle-v2-mail-slot input[type="text"],
+  #cfle-home-v2 .cfle-v2-mail-slot input[type="email"],
+  #cfle-home-v2 .cfle-v2-mail-slot input:not([type]),
+  #cfle-home-v2 .cfle-v2-mail-slot button,
+  #cfle-home-v2 .cfle-v2-mail-slot input[type="submit"],
+  #cfle-home-v2 .cfle-v2-mail-slot input[type="button"]{
+    display:block !important;
+
+    width:100% !important;
+
+    height:42px !important;
+
+    margin:
+      0
+      0
+      7px !important;
+
+    font-size:13px !important;
+  }
+
+}
+
+
+/* ============================================================
+   SMALL MOBILE
+   ============================================================ */
+
+@media (max-width:390px){
+
+  #cfle-home-v2 .cfle-v2-title{
+    font-size:47px !important;
+  }
+
+
+  #cfle-home-v2 .cfle-v2-event-name{
+    font-size:18px !important;
+  }
+
+
+  #cfle-home-v2 .cfle-v2-time-row{
+    grid-template-columns:
+      38px
+      1px
+      66px
+      1px
+      minmax(0,1fr) !important;
+
+    gap:5px !important;
+  }
+
+}
+
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion:reduce){
+
+  #cfle-home-v2 *,
+  #cfle-home-v2 *:before,
+  #cfle-home-v2 *:after{
+    animation:none !important;
+    transition:none !important;
+  }
+
+}
+
+/* ============================================================
+   FINAL HOMEPAGE REDESIGN OVERRIDES
+   ============================================================ */
+
+#cfle-home-v2 .cfle-v2-hero{
+  background-image:
+    linear-gradient(90deg,rgba(255,253,248,.72) 0%,rgba(255,253,248,.84) 29%,rgba(255,253,248,.20) 61%,rgba(255,250,236,.07) 100%),
+    url("https://yysirota.github.io/customheader/cfle-hero-foliage.webp?v=1.0.0") !important;
+  background-size:cover !important;
+  background-position:center center !important;
+  background-repeat:no-repeat !important;
+}
+
+#cfle-home-v2 .cfle-v2-building{
+  mix-blend-mode:normal !important;
+  filter:drop-shadow(0 18px 22px rgba(100,62,11,.09)) !important;
+}
+
+#cfle-home-v2 .cfle-v2-events-grid{
+  justify-content:center !important;
+  align-items:stretch !important;
+}
+
+#cfle-home-v2 .cfle-v2-events-grid[data-count="1"]{
+  grid-template-columns:minmax(0,580px) !important;
+  max-width:580px !important;
+}
+#cfle-home-v2 .cfle-v2-events-grid[data-count="2"]{
+  grid-template-columns:repeat(2,minmax(0,560px)) !important;
+  max-width:1150px !important;
+}
+#cfle-home-v2 .cfle-v2-events-grid[data-count="3"]{
+  grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  max-width:1320px !important;
+}
+#cfle-home-v2 .cfle-v2-events-grid[data-count="4"]{
+  grid-template-columns:repeat(2,minmax(0,560px)) !important;
+  max-width:1150px !important;
+}
+
+#cfle-home-v2 .cfle-v2-event{
+  position:relative !important;
+  width:100% !important;
+}
+
+#cfle-home-v2 .cfle-v2-event--featured{
+  border-color:#d39a27 !important;
+  background:linear-gradient(135deg,#fff8e5 0%,#f9edcf 48%,#fffaf0 100%) !important;
+  box-shadow:inset 0 0 0 1px rgba(200,135,18,.07),0 8px 24px rgba(91,61,15,.07) !important;
+}
+
+#cfle-home-v2 .cfle-v2-featured{
+  display:inline-flex !important;
+  align-items:center !important;
+  gap:6px !important;
+  margin:0 0 5px !important;
+  color:#bb7908 !important;
+  font-family:var(--cfle-sans) !important;
+  font-size:11px !important;
+  line-height:1 !important;
+  font-weight:800 !important;
+  letter-spacing:.04em !important;
+  text-transform:uppercase !important;
+}
+
+#cfle-home-v2 .cfle-v2-featured-star{
+  color:#e0a10d !important;
+  font-size:17px !important;
+  line-height:1 !important;
+}
+
+#cfle-home-v2 .cfle-v2-time-row{
+  text-decoration:none !important;
+}
+
+#cfle-home-v2 .cfle-v2-time-label{
+  text-transform:none !important;
+}
+
+#cfle-home-v2 .cfle-v2-torah a,
+#cfle-home-v2 .cfle-v2-holiday a{
+  color:inherit !important;
+  text-decoration:none !important;
+}
+
+#cfle-home-v2 .cfle-v2-holiday{
+  margin-top:14px !important;
+  padding-top:13px !important;
+  border-top:1px solid #ead7ad !important;
+  text-align:center !important;
+}
+#cfle-home-v2 .cfle-v2-holiday-title{
+  margin:0 0 3px !important;
+  color:#6d4516 !important;
+  font-family:var(--cfle-serif) !important;
+  font-size:15px !important;
+  font-weight:600 !important;
+}
+#cfle-home-v2 .cfle-v2-holiday-name{
+  display:block !important;
+  color:#2a2630 !important;
+  font-family:var(--cfle-serif) !important;
+  font-size:17px !important;
+  font-weight:700 !important;
+}
+#cfle-home-v2 .cfle-v2-holiday-date{
+  margin:1px 0 0 !important;
+  color:#6f665b !important;
+  font-size:12px !important;
+}
+#cfle-home-v2 .cfle-v2-holiday[hidden]{display:none !important;}
+
+#cfle-home-v2 .cfle-v2-band,
+#cfle-home-v2 .cfle-v2-mailing{
+  background-image:url("https://yysirota.github.io/customheader/cfle-mailing-bokeh.webp?v=1.0.0") !important;
+  background-size:cover !important;
+  background-position:center center !important;
+}
+
+#cfle-home-v2 .cfle-v2-mailing{
+  background-color:#553614 !important;
+}
+
+/* Preserve the actual ChabadOne subscription form and restyle only its presentation. */
+#cfle-home-v2 .cfle-v2-mail-slot #formContainer,
+#cfle-home-v2 .cfle-v2-mail-slot .widget_content{
+  width:100% !important;
+  margin:0 !important;
+  padding:0 !important;
+  background:transparent !important;
+}
+#cfle-home-v2 .cfle-v2-mail-slot form,
+#cfle-home-v2 .cfle-v2-mail-slot fieldset{
+  display:grid !important;
+  grid-template-columns:1fr 1fr 1.25fr .85fr !important;
+  gap:10px !important;
+  width:100% !important;
+  margin:0 !important;
+  padding:0 !important;
+  border:0 !important;
+  background:transparent !important;
+}
+#cfle-home-v2 .cfle-v2-mail-slot label,
+#cfle-home-v2 .cfle-v2-mail-slot form fieldset > small{
+  position:absolute !important;
+  width:1px !important;
+  height:1px !important;
+  margin:-1px !important;
+  padding:0 !important;
+  overflow:hidden !important;
+  clip:rect(0 0 0 0) !important;
+  white-space:nowrap !important;
+  border:0 !important;
+}
+#cfle-home-v2 .cfle-v2-mail-slot input[type="text"],
+#cfle-home-v2 .cfle-v2-mail-slot input[type="email"]{
+  display:block !important;
+  width:100% !important;
+  min-width:0 !important;
+  height:46px !important;
+  margin:0 !important;
+  padding:0 15px !important;
+  border:1px solid rgba(255,255,255,.72) !important;
+  border-radius:5px !important;
+  background:rgba(255,255,255,.95) !important;
+  color:#2f2a25 !important;
+  box-shadow:none !important;
+  font-size:14px !important;
+}
+#cfle-home-v2 .cfle-v2-mail-slot input[type="submit"]{
+  width:100% !important;
+  height:46px !important;
+  margin:0 !important;
+  padding:0 18px !important;
+  border:1px solid #f0ce7c !important;
+  border-radius:5px !important;
+  background:linear-gradient(135deg,#c98b27,#a96b13) !important;
+  color:#fff !important;
+  font-family:var(--cfle-serif) !important;
+  font-size:17px !important;
+  cursor:pointer !important;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.12) !important;
+}
+#cfle-home-v2 .cfle-v2-mail-slot .js-recaptcha-wrapper,
+#cfle-home-v2 .cfle-v2-mail-slot input[type="hidden"]{
+  grid-column:1/-1 !important;
+}
+#cfle-home-v2 .cfle-v2-mail-slot #response{
+  display:block;
+  width:100% !important;
+  height:auto !important;
+  margin:10px 0 0 !important;
+  color:#fff !important;
+  text-align:center !important;
+}
+
+
+@media (max-width:700px){
+  #cfle-home-v2 .cfle-v2-hero{
+    background-position:64% center !important;
+  }
+  #cfle-home-v2 .cfle-v2-mail-slot form,
+  #cfle-home-v2 .cfle-v2-mail-slot fieldset{
+    grid-template-columns:1fr !important;
+  }
+  #cfle-home-v2 .cfle-v2-mail-slot input[type="text"],
+  #cfle-home-v2 .cfle-v2-mail-slot input[type="email"],
+  #cfle-home-v2 .cfle-v2-mail-slot input[type="submit"]{
+    height:44px !important;
+  }
+}
+
