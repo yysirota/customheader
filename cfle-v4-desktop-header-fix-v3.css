@@ -1,0 +1,153 @@
+/* ============================================================
+   CHABAD OF FORT LEE — V4 DESKTOP HEADER FIX 3
+   Purpose:
+   - Restore the V3-style desktop header geometry/typography.
+   - Keep the ORIGINAL transparent-at-top / frosted-on-scroll behavior.
+   - Keep the existing Donate pill/animation untouched.
+   - Hide the redundant plain-text site title; the real logo already says Chabad Fort Lee.
+   - Move ONLY the homepage hero artwork down enough to clear the fixed header.
+   Mobile is intentionally untouched in this pass.
+   ============================================================ */
+
+@media (min-width:1025px){
+
+  /* ----------------------------------------------------------
+     Header behavior: transparent at page top, original frost after scroll.
+     ---------------------------------------------------------- */
+  body.home:not(.scrolled) #header,
+  body.home:not(.scrolled) #header.on-scroll,
+  body.home:not(.scrolled) #header .header-wrapper,
+  body.home:not(.scrolled) #header .branding-search,
+  body.home:not(.scrolled) #header #header_branding,
+  body.home:not(.scrolled) #header .site-nav-wrapper,
+  body.home:not(.scrolled) #header .links,
+  body.home:not(.scrolled) #header .top-links,
+  body.home:not(.scrolled) #header .header-links,
+  body.home:not(.scrolled) #header .secondary-links,
+  body.home:not(.scrolled) #header .utility-links{
+    background:transparent !important;
+    background-color:transparent !important;
+    -webkit-backdrop-filter:none !important;
+    backdrop-filter:none !important;
+    box-shadow:none !important;
+  }
+
+  body.scrolled #header,
+  body.scrolled #header.on-scroll{
+    background:var(--header-frost,rgba(245,245,245,.60)) !important;
+    -webkit-backdrop-filter:blur(10px) !important;
+    backdrop-filter:blur(10px) !important;
+    box-shadow:0 2px 12px var(--header-shadow,rgba(0,0,0,.12)) !important;
+  }
+
+  /* ----------------------------------------------------------
+     Logo treatment: V3 look at the top of the page.
+     When scrolled, do not alter the original working position.
+     ---------------------------------------------------------- */
+  #header_branding .site_title{
+    display:none !important;
+  }
+
+  body:not(.scrolled) #header_branding .site-logo-wrapper{
+    position:relative !important;
+    left:-36px !important;
+    top:-12px !important;
+    width:170px !important;
+    height:88px !important;
+    margin-right:40px !important;
+    overflow:visible !important;
+  }
+
+  body:not(.scrolled) #header_branding .site-logo-wrapper img{
+    display:block !important;
+    width:170px !important;
+    height:170px !important;
+    max-width:none !important;
+    max-height:none !important;
+    object-fit:contain !important;
+    transform:translateY(-41px) scale(1.05) !important;
+    transform-origin:center center !important;
+  }
+
+  /* ----------------------------------------------------------
+     Main navigation: V3 typography, but dark enough to remain
+     readable while the homepage header is transparent.
+     ---------------------------------------------------------- */
+  #header .site-nav-wrapper a.parent,
+  body:not(.scrolled) #header .site-nav-wrapper a.parent,
+  body.scrolled #header .site-nav-wrapper a.parent{
+    color:#402a18 !important;
+    font-family:Georgia,"Times New Roman",serif !important;
+    font-size:16px !important;
+    font-weight:600 !important;
+    letter-spacing:-.01em !important;
+    text-shadow:none !important;
+  }
+
+  #header .site-nav-wrapper .co_menu_item:not(.donate_link) a.parent:hover{
+    color:#b8791a !important;
+  }
+
+  /* Keep the existing Donate pill exactly as-is. */
+  #header .site-nav-wrapper .co_menu_item.donate_link a.parent{
+    color:#fff !important;
+  }
+
+  /* ----------------------------------------------------------
+     Desktop utility links at the very top need the same readable
+     warm-dark treatment while the header is transparent.
+     ---------------------------------------------------------- */
+  body:not(.scrolled) #header a[href*="asktherabbi"],
+  body:not(.scrolled) #header a[href*="tools/feedback"],
+  body:not(.scrolled) #header a[href*="1106558"],
+  body:not(.scrolled) #header a[href="/"],
+  body:not(.scrolled) #header a[href="https://www.chabadfortlee.com/"],
+  body:not(.scrolled) #header .links a,
+  body:not(.scrolled) #header .top-links a,
+  body:not(.scrolled) #header .header-links a,
+  body:not(.scrolled) #header .secondary-links a,
+  body:not(.scrolled) #header .utility-links a{
+    color:#5a3b1b !important;
+    text-shadow:none !important;
+  }
+
+  body.home:not(.scrolled) #header .links,
+  body.home:not(.scrolled) #header .top-links,
+  body.home:not(.scrolled) #header .header-links,
+  body.home:not(.scrolled) #header .secondary-links,
+  body.home:not(.scrolled) #header .utility-links,
+  body.home:not(.scrolled) #header .links span,
+  body.home:not(.scrolled) #header .top-links span,
+  body.home:not(.scrolled) #header .header-links span,
+  body.home:not(.scrolled) #header .secondary-links span,
+  body.home:not(.scrolled) #header .utility-links span{
+    color:#5a3b1b !important;
+    text-shadow:none !important;
+  }
+
+  body:not(.scrolled) #header .fa-search,
+  body:not(.scrolled) #header [class*="search"] i,
+  body:not(.scrolled) #header [class*="search"] svg{
+    color:#5a3b1b !important;
+    stroke:#5a3b1b !important;
+  }
+
+  /* ----------------------------------------------------------
+     Homepage hero:
+     The final desktop artwork contains intentional blank space at its top.
+     Crop that blank area UP rather than adding more spacing, so the first
+     visible arcs/cloud artwork begins just below the utility row.
+     ---------------------------------------------------------- */
+  body.home #cfle-home-v4 .cfle-v4-hero{
+    padding-top:0 !important;
+    background:#fefef8 !important;
+  }
+
+  body.home #cfle-home-v4 .cfle-v4-hero-picture{
+    overflow:hidden !important;
+  }
+
+  body.home #cfle-home-v4 .cfle-v4-hero-art{
+    margin-top:clamp(-96px,-5.4vw,-72px) !important;
+  }
+}
