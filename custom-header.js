@@ -131,8 +131,8 @@ window.addEventListener("scroll", function(){
     var pushkaAssetsPrepared = false;
 
     function isPushkaDesktop(){
-        return window.innerWidth > 1024;
-    }
+    return false;
+}
 
     function isPushkaHomepage(){
 
