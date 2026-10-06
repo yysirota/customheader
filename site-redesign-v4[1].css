@@ -1,0 +1,884 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap");
+
+/* ============================================================
+   CHABAD OF FORT LEE — REDESIGN V4
+   Additive visual layer. Existing custom-header.css/js and
+   chabad-events1 events.css/js remain authoritative for function.
+   ============================================================ */
+
+:root{
+  --cfle-v4-gold:#c88419;
+  --cfle-v4-gold-dark:#a9670a;
+  --cfle-v4-gold-light:#e2bd73;
+  --cfle-v4-ink:#1d2230;
+  --cfle-v4-body:#554a3d;
+  --cfle-v4-cream:#fffdf8;
+  --cfle-v4-soft:#fbf5e9;
+  --cfle-v4-line:#e5c98f;
+  --cfle-v4-serif:"Playfair Display",Georgia,"Times New Roman",serif;
+  --cfle-v4-sans:"Lato",Arial,Helvetica,sans-serif;
+}
+
+/* ============================================================
+   V4 HOME FOUNDATION
+   ============================================================ */
+
+#cfle-home-v4,
+#cfle-home-v4 *{
+  box-sizing:border-box !important;
+}
+
+#cfle-home-v4{
+  position:relative !important;
+  width:100% !important;
+  margin:0 !important;
+  padding:0 !important;
+  overflow:hidden !important;
+  color:var(--cfle-v4-ink) !important;
+  background:var(--cfle-v4-cream) !important;
+  font-family:var(--cfle-v4-sans) !important;
+}
+
+.cfle-v4-native-home-hidden{
+  position:absolute !important;
+  left:-20000px !important;
+  top:0 !important;
+  width:1px !important;
+  height:1px !important;
+  overflow:hidden !important;
+  opacity:0 !important;
+  pointer-events:none !important;
+}
+
+/* ============================================================
+   HERO — EXACT APPROVED MOCKUP
+   Desktop is the approved mockup hero cropped below the sticky header.
+   Mobile uses the same approved visual elements re-arranged vertically.
+   No CSS redraw, no generated reinterpretation, no separate building layer.
+   ============================================================ */
+
+#cfle-home-v4 .cfle-v4-hero{
+  position:relative !important;
+  width:100% !important;
+  margin:0 !important;
+  padding:0 !important;
+  overflow:hidden !important;
+  background:#fefaf1 !important;
+}
+
+#cfle-home-v4 .cfle-v4-hero-picture,
+#cfle-home-v4 .cfle-v4-hero-art{
+  display:block !important;
+  width:100% !important;
+  height:auto !important;
+  margin:0 !important;
+  padding:0 !important;
+  border:0 !important;
+}
+
+#cfle-home-v4 .cfle-v4-hero-art{
+  object-fit:contain !important;
+  object-position:center top !important;
+}
+
+/* Accessible heading: the exact visible lettering is baked into the approved art. */
+#cfle-home-v4 .cfle-v4-visually-hidden{
+  position:absolute !important;
+  width:1px !important;
+  height:1px !important;
+  padding:0 !important;
+  margin:-1px !important;
+  overflow:hidden !important;
+  clip:rect(0,0,0,0) !important;
+  white-space:nowrap !important;
+  border:0 !important;
+}
+
+/* ============================================================
+   CONTINUOUS CREAM CONTENT AREA
+   Events + Prayer + Shabbat are intentionally one section.
+   ============================================================ */
+
+#cfle-home-v4 .cfle-v4-main{
+  position:relative !important;
+  z-index:4 !important;
+  width:100% !important;
+  margin:0 !important;
+  padding:15px clamp(22px,4.2vw,70px) 120px !important;
+  background:linear-gradient(180deg,#fffdf8 0%,#fffdf9 64%,#fffaf0 100%) !important;
+}
+
+/* ============================================================
+   UPCOMING — REAL events.js WIDGET, ONLY RESTYLED
+   ============================================================ */
+
+#cfle-home-v4 .cfle-v4-events-slot{
+  width:100% !important;
+  max-width:1280px !important;
+  margin:0 auto !important;
+}
+
+#cfle-home-v4 .cfle-home-events-widget,
+#cfle-home-v4 .cfle-home-events-widget > div,
+#cfle-home-v4 .cfle-home-events-shell{
+  width:100% !important;
+  max-width:none !important;
+  margin:0 !important;
+  padding:0 !important;
+  border:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+}
+
+#cfle-home-v4 .cfle-home-events-heading,
+#cfle-home-v4 .widget_header h5{
+  color:#b66f12 !important;
+  font-family:var(--cfle-v4-serif) !important;
+  text-transform:uppercase !important;
+  letter-spacing:.22em !important;
+  font-weight:600 !important;
+}
+
+#cfle-home-v4 .cfle-home-events-heading{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:18px !important;
+  margin:0 auto 27px !important;
+  font-size:18px !important;
+  line-height:1.2 !important;
+  text-align:center !important;
+}
+
+#cfle-home-v4 .cfle-home-events-heading:before,
+#cfle-home-v4 .cfle-home-events-heading:after{
+  content:"" !important;
+  display:block !important;
+  width:50px !important;
+  height:1px !important;
+  background:#d39a3c !important;
+}
+
+#cfle-home-v4 .cfle-home-events-list{
+  display:grid !important;
+  align-items:stretch !important;
+  justify-content:center !important;
+  gap:18px !important;
+  width:100% !important;
+  margin:0 auto !important;
+}
+
+#cfle-home-v4 .cfle-home-events-list[data-cfle-count="1"]{
+  grid-template-columns:minmax(0,460px) !important;
+  max-width:460px !important;
+}
+#cfle-home-v4 .cfle-home-events-list[data-cfle-count="2"]{
+  grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  max-width:920px !important;
+}
+#cfle-home-v4 .cfle-home-events-list[data-cfle-count="3"]{
+  grid-template-columns:repeat(3,minmax(0,1fr)) !important;
+  max-width:1220px !important;
+}
+#cfle-home-v4 .cfle-home-events-list[data-cfle-count="4"]{
+  grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  max-width:940px !important;
+}
+
+#cfle-home-v4 .cfle-home-event{
+  display:grid !important;
+  grid-template-columns:88px minmax(0,1fr) 38px !important;
+  grid-template-areas:"date content arrow" !important;
+  align-items:center !important;
+  gap:14px !important;
+  min-width:0 !important;
+  min-height:118px !important;
+  margin:0 !important;
+  padding:13px 14px !important;
+  border:1.5px solid rgba(211,151,48,.65) !important;
+  border-radius:16px !important;
+  background:rgba(255,255,255,.34) !important;
+  color:#1d2230 !important;
+  text-decoration:none !important;
+  box-shadow:0 7px 20px rgba(91,62,19,.055) !important;
+  transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease !important;
+}
+
+#cfle-home-v4 .cfle-home-event:hover{
+  transform:translateY(-2px) !important;
+  border-color:#d39224 !important;
+  box-shadow:0 12px 26px rgba(91,62,19,.09) !important;
+}
+
+#cfle-home-v4 .cfle-home-event--featured{
+  position:relative !important;
+  background:linear-gradient(135deg,#fff8e6 0%,#fffdf7 100%) !important;
+  border-color:#d79a2a !important;
+}
+
+#cfle-home-v4 .cfle-home-date-box{
+  grid-area:date !important;
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  justify-content:center !important;
+  width:88px !important;
+  min-height:91px !important;
+  padding:8px 6px !important;
+  border:1.5px solid #e3bd70 !important;
+  border-radius:10px !important;
+  background:#fffdf9 !important;
+  text-align:center !important;
+}
+
+/* Deliberately keep the established date typography the user preferred. */
+#cfle-home-v4 .cfle-home-date-month,
+#cfle-home-v4 .cfle-home-date-weekday{
+  color:#b8770c !important;
+  font-family:Arial,Helvetica,sans-serif !important;
+  font-size:11px !important;
+  line-height:1.05 !important;
+  font-weight:900 !important;
+  letter-spacing:.08em !important;
+  text-transform:uppercase !important;
+}
+
+#cfle-home-v4 .cfle-home-date-day{
+  margin:3px 0 2px !important;
+  color:#0e1730 !important;
+  font-family:Georgia,"Times New Roman",serif !important;
+  font-size:35px !important;
+  line-height:.95 !important;
+  font-weight:700 !important;
+  letter-spacing:-.04em !important;
+}
+
+#cfle-home-v4 .cfle-home-event-content{
+  grid-area:content !important;
+  min-width:0 !important;
+  align-items:flex-start !important;
+  justify-content:center !important;
+}
+
+#cfle-home-v4 .cfle-home-event-title{
+  display:block !important;
+  margin:0 0 4px !important;
+  color:#131b33 !important;
+  font-family:Georgia,"Times New Roman",serif !important;
+  font-size:clamp(20px,1.7vw,27px) !important;
+  line-height:1.05 !important;
+  font-weight:700 !important;
+  letter-spacing:-.02em !important;
+  white-space:normal !important;
+}
+
+#cfle-home-v4 .cfle-home-event-time{
+  margin:0 !important;
+  color:#59627a !important;
+  font-size:14px !important;
+  line-height:1.25 !important;
+  font-weight:600 !important;
+  white-space:normal !important;
+}
+
+#cfle-home-v4 .cfle-home-event-arrow{
+  grid-area:arrow !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  width:34px !important;
+  height:34px !important;
+  border:1.5px solid #d18c20 !important;
+  border-radius:50% !important;
+  background:transparent !important;
+  color:#c07912 !important;
+  font-size:21px !important;
+  line-height:1 !important;
+}
+
+#cfle-home-v4 .cfle-home-featured-star{
+  position:absolute !important;
+  top:9px !important;
+  right:49px !important;
+  z-index:2 !important;
+  display:block !important;
+  color:#d89412 !important;
+  font-size:18px !important;
+  line-height:1 !important;
+  text-shadow:0 1px 5px rgba(180,110,0,.15) !important;
+}
+
+#cfle-home-v4 .cfle-home-events-more,
+#cfle-home-v4 .cfle-home-more{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:9px !important;
+  width:max-content !important;
+  min-height:43px !important;
+  margin:18px auto 0 !important;
+  padding:10px 22px !important;
+  border:1.5px solid #c9821b !important;
+  border-radius:999px !important;
+  background:#fffdf8 !important;
+  color:#18213a !important;
+  font-family:Georgia,"Times New Roman",serif !important;
+  font-size:14px !important;
+  font-weight:600 !important;
+  text-decoration:none !important;
+  box-shadow:none !important;
+}
+
+/* ============================================================
+   PRAYER + SHABBAT — REAL NATIVE WIDGETS
+   ============================================================ */
+
+#cfle-home-v4 .cfle-v4-info{
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr) !important;
+  gap:0 !important;
+  width:100% !important;
+  max-width:1190px !important;
+  margin:48px auto 0 !important;
+  padding-top:0 !important;
+}
+
+#cfle-home-v4 .cfle-v4-prayer-slot,
+#cfle-home-v4 .cfle-v4-shabbat-slot{
+  min-width:0 !important;
+  padding:0 42px !important;
+}
+
+#cfle-home-v4 .cfle-v4-shabbat-slot{
+  border-left:1px solid #ddd6ca !important;
+}
+
+#cfle-home-v4 .cfle-v4-prayer-slot .chabad_updates,
+#cfle-home-v4 .cfle-v4-shabbat-slot .candlelighting{
+  position:relative !important;
+  width:100% !important;
+  height:auto !important;
+  margin:0 !important;
+  padding:0 !important;
+  border:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+}
+
+#cfle-home-v4 .cfle-v4-prayer-slot .wrapper,
+#cfle-home-v4 .cfle-v4-shabbat-slot .wrapper,
+#cfle-home-v4 .cfle-v4-prayer-slot .widget_content,
+#cfle-home-v4 .cfle-v4-shabbat-slot .widget_content{
+  position:relative !important;
+  width:100% !important;
+  height:auto !important;
+  min-height:0 !important;
+  margin:0 !important;
+  padding:0 !important;
+  overflow:visible !important;
+  border:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+}
+
+#cfle-home-v4 .cfle-v4-prayer-slot .widget_header,
+#cfle-home-v4 .cfle-v4-shabbat-slot .widget_header{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:12px !important;
+  margin:0 0 24px !important;
+  padding:0 !important;
+  border:0 !important;
+  background:transparent !important;
+}
+
+#cfle-home-v4 .cfle-v4-prayer-slot .widget_header:before,
+#cfle-home-v4 .cfle-v4-shabbat-slot .widget_header:before{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  width:32px !important;
+  height:32px !important;
+  color:#c47c13 !important;
+  font-size:27px !important;
+  line-height:1 !important;
+}
+#cfle-home-v4 .cfle-v4-prayer-slot .widget_header:before{content:"▤" !important; transform:rotate(90deg) !important;}
+#cfle-home-v4 .cfle-v4-shabbat-slot .widget_header:before{content:"▦" !important;}
+
+#cfle-home-v4 .widget_header h5{
+  margin:0 !important;
+  padding:0 !important;
+  font-size:18px !important;
+  line-height:1.2 !important;
+  text-align:center !important;
+}
+
+/* Prayer: same actual text nodes, merely grouped side by side. */
+#cfle-home-v4 .cfle-v4-prayer-slot .bottom_padding{
+  display:grid !important;
+  grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+  gap:30px !important;
+  width:100% !important;
+  margin:0 !important;
+  padding:0 !important;
+  text-align:left !important;
+}
+
+#cfle-home-v4 .cfle-v4-prayer-block{
+  color:#38445e !important;
+  font-family:var(--cfle-v4-sans) !important;
+  font-size:15px !important;
+  line-height:1.72 !important;
+}
+
+#cfle-home-v4 .cfle-v4-prayer-block + .cfle-v4-prayer-block{
+  padding-left:30px !important;
+  border-left:1px solid #d9d5cf !important;
+}
+
+#cfle-home-v4 .cfle-v4-prayer-slot .prayer_heading{
+  display:inline-block !important;
+  margin-bottom:5px !important;
+  color:#141d35 !important;
+  font-family:Georgia,"Times New Roman",serif !important;
+  font-size:19px !important;
+  line-height:1.2 !important;
+  font-weight:700 !important;
+}
+
+#cfle-home-v4 .cfle-v4-prayer-slot .readMore{
+  display:none !important;
+}
+
+/* Shabbat: use the real widget body and links. */
+#cfle-home-v4 .cfle-v4-shabbat-slot .widget_content > div{
+  max-width:440px !important;
+  margin:0 auto !important;
+  padding:13px 17px 11px !important;
+  border:1px solid #e4c27b !important;
+  border-radius:13px !important;
+  background:linear-gradient(180deg,#fffaf0 0%,#fffdf8 100%) !important;
+  box-shadow:0 5px 16px rgba(110,76,22,.045) !important;
+}
+
+#cfle-home-v4 .cfle-v4-shabbat-slot .button_container,
+#cfle-home-v4 .cfle-v4-shabbat-slot .small_top_margin.float_right,
+#cfle-home-v4 .cfle-v4-shabbat-slot .enscroll-track,
+#cfle-home-v4 .cfle-v4-shabbat-slot .scrollable_track{
+  display:none !important;
+}
+
+#cfle-home-v4 .cfle-v4-shabbat-slot .clearfix.horizontal_padding.vertical_padding,
+#cfle-home-v4 .cfle-v4-shabbat-slot .clearfix.horizontal_padding.top_padding{
+  position:relative !important;
+  display:block !important;
+  margin:0 !important;
+  padding:0 !important;
+}
+
+#cfle-home-v4 .cfle-v4-shabbat-slot .float_left{
+  float:none !important;
+}
+
+#cfle-home-v4 .cfle-v4-shabbat-slot .float_left > img{
+  position:absolute !important;
+  left:0 !important;
+  top:0 !important;
+  width:34px !important;
+  height:auto !important;
+  opacity:.95 !important;
+}
+
+#cfle-home-v4 .candlelighting_content,
+#cfle-home-v4 .parsha_content,
+#cfle-home-v4 .upcomingholiday_content{
+  margin-left:46px !important;
+}
+
+#cfle-home-v4 .candlelighting_heading,
+#cfle-home-v4 .parsha_content,
+#cfle-home-v4 .upcomingholiday_content{
+  color:#17203a !important;
+  font-family:var(--cfle-v4-sans) !important;
+}
+
+#cfle-home-v4 .section_heading{
+  color:#17203a !important;
+  font-family:Georgia,"Times New Roman",serif !important;
+  font-size:17px !important;
+  line-height:1.2 !important;
+  font-weight:700 !important;
+  text-transform:none !important;
+}
+
+#cfle-home-v4 .section_subheading{
+  color:#58627b !important;
+  font-size:13px !important;
+  line-height:1.3 !important;
+}
+
+#cfle-home-v4 .times_wrapper{
+  height:auto !important;
+  min-height:0 !important;
+  margin-top:7px !important;
+  overflow:visible !important;
+}
+
+#cfle-home-v4 .times_wrapper .medium_top_padding{
+  display:grid !important;
+  grid-template-columns:96px minmax(0,1fr) !important;
+  gap:8px !important;
+  align-items:baseline !important;
+  padding:4px 0 !important;
+}
+
+#cfle-home-v4 .when_to_light{
+  float:none !important;
+  color:#a06c22 !important;
+  font-size:10px !important;
+  line-height:1.25 !important;
+  font-weight:700 !important;
+}
+
+#cfle-home-v4 .times_wrapper .float_left{
+  min-width:0 !important;
+  font-size:12px !important;
+  color:#58627b !important;
+}
+
+#cfle-home-v4 .times_wrapper a{
+  color:#4f5870 !important;
+  text-decoration:none !important;
+}
+
+#cfle-home-v4 .times_wrapper .bold.large{
+  color:#c47910 !important;
+  font-family:Georgia,"Times New Roman",serif !important;
+  font-size:18px !important;
+  font-weight:700 !important;
+}
+
+#cfle-home-v4 .cfle-v4-shabbat-slot .separator{
+  height:1px !important;
+  margin:9px 0 !important;
+  background:#eadbbd !important;
+  border:0 !important;
+}
+
+#cfle-home-v4 .parsha_content,
+#cfle-home-v4 .upcomingholiday_content{
+  padding:4px 0 !important;
+}
+
+#cfle-home-v4 .parsha_content a,
+#cfle-home-v4 .upcomingholiday_content a{
+  color:#263a68 !important;
+  text-decoration:none !important;
+}
+
+/* ============================================================
+   MAILING LIST — REAL FORM
+   ============================================================ */
+
+#cfle-home-v4 .cfle-v4-mailing{
+  position:relative !important;
+  margin-top:-1px !important;
+  padding:112px clamp(22px,5vw,74px) 72px !important;
+  color:#fff8e9 !important;
+  background:
+    linear-gradient(rgba(60,35,12,.20),rgba(54,31,10,.30)),
+    url("https://yysirota.github.io/customheader/cfle-mailing-bokeh-v4.webp?v=4.0.0") center center/cover no-repeat !important;
+}
+
+#cfle-home-v4 .cfle-v4-mailing:before{
+  content:"" !important;
+  position:absolute !important;
+  left:-2% !important;
+  top:-53px !important;
+  width:104% !important;
+  height:112px !important;
+  background:var(--cfle-v4-soft) !important;
+  border-bottom:1px solid #c58a25 !important;
+  border-radius:0 0 50% 45% / 0 0 76% 58% !important;
+  transform:rotate(-1.7deg) !important;
+  transform-origin:center center !important;
+}
+
+#cfle-home-v4 .cfle-v4-mailing-inner{
+  position:relative !important;
+  z-index:2 !important;
+  width:100% !important;
+  max-width:1080px !important;
+  margin:0 auto !important;
+}
+
+#cfle-home-v4 .cfle-v4-mailing-slot .subscribe,
+#cfle-home-v4 .cfle-v4-mailing-slot .wrapper,
+#cfle-home-v4 .cfle-v4-mailing-slot .widget_content{
+  width:100% !important;
+  margin:0 !important;
+  padding:0 !important;
+  border:0 !important;
+  background:transparent !important;
+  box-shadow:none !important;
+}
+
+#cfle-home-v4 .cfle-v4-mailing-slot .widget_header{
+  margin:0 0 8px !important;
+  padding:0 !important;
+  text-align:center !important;
+  background:transparent !important;
+  border:0 !important;
+}
+
+#cfle-home-v4 .cfle-v4-mailing-slot .widget_header h5{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  gap:14px !important;
+  margin:0 !important;
+  color:#efd08a !important;
+  font-family:var(--cfle-v4-serif) !important;
+  font-size:18px !important;
+  font-weight:500 !important;
+  letter-spacing:.22em !important;
+  text-transform:uppercase !important;
+}
+
+#cfle-home-v4 .cfle-v4-mailing-slot .widget_header h5:before,
+#cfle-home-v4 .cfle-v4-mailing-slot .widget_header h5:after{
+  content:"" !important;
+  display:block !important;
+  width:48px !important;
+  height:1px !important;
+  background:#caa355 !important;
+}
+
+#cfle-home-v4 .cfle-v4-mail-subtitle{
+  margin:0 0 18px !important;
+  color:#fff8ec !important;
+  font-size:14px !important;
+  line-height:1.4 !important;
+  text-align:center !important;
+}
+
+#cfle-home-v4 #formContainer,
+#cfle-home-v4 #formContainer form,
+#cfle-home-v4 #formContainer fieldset{
+  width:100% !important;
+  margin:0 !important;
+  padding:0 !important;
+  border:0 !important;
+  background:transparent !important;
+}
+
+#cfle-home-v4 #formContainer fieldset{
+  display:grid !important;
+  grid-template-columns:1fr 1fr 1.35fr .72fr !important;
+  gap:9px !important;
+  align-items:center !important;
+}
+
+#cfle-home-v4 #formContainer label,
+#cfle-home-v4 #formContainer fieldset > small{
+  position:absolute !important;
+  width:1px !important;
+  height:1px !important;
+  overflow:hidden !important;
+  clip:rect(0 0 0 0) !important;
+  clip-path:inset(50%) !important;
+  white-space:nowrap !important;
+}
+
+#cfle-home-v4 #formContainer input[type="text"],
+#cfle-home-v4 #formContainer input[type="email"]{
+  display:block !important;
+  width:100% !important;
+  height:45px !important;
+  margin:0 !important;
+  padding:0 14px !important;
+  border:1px solid rgba(255,255,255,.78) !important;
+  border-radius:5px !important;
+  background:rgba(255,255,255,.97) !important;
+  color:#3f4655 !important;
+  font-family:var(--cfle-v4-sans) !important;
+  font-size:13px !important;
+  box-shadow:none !important;
+}
+
+#cfle-home-v4 #formContainer input[type="submit"]{
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  width:100% !important;
+  height:45px !important;
+  margin:0 !important;
+  padding:0 18px !important;
+  border:1px solid #f0d088 !important;
+  border-radius:5px !important;
+  background:linear-gradient(135deg,#c88a29,#a9630e) !important;
+  color:#fff !important;
+  font-family:Georgia,"Times New Roman",serif !important;
+  font-size:16px !important;
+  cursor:pointer !important;
+  box-shadow:0 6px 14px rgba(0,0,0,.14) !important;
+}
+
+#cfle-home-v4 #response{
+  color:#fff8ec !important;
+}
+
+/* ============================================================
+   TABLET / MOBILE
+   ============================================================ */
+@media (max-width:700px){
+  #cfle-home-v4 .cfle-v4-hero{
+    background:#fefaf1 !important;
+  }
+}
+
+
+
+@media (max-width:1024px){
+
+  #cfle-home-v4 .cfle-v4-main{
+    padding:12px 16px 92px !important;
+  }
+
+  #cfle-home-v4 .cfle-home-events-list,
+  #cfle-home-v4 .cfle-home-events-list[data-cfle-count="1"],
+  #cfle-home-v4 .cfle-home-events-list[data-cfle-count="2"],
+  #cfle-home-v4 .cfle-home-events-list[data-cfle-count="3"],
+  #cfle-home-v4 .cfle-home-events-list[data-cfle-count="4"]{
+    grid-template-columns:1fr !important;
+    max-width:650px !important;
+  }
+
+  #cfle-home-v4 .cfle-v4-info{
+    grid-template-columns:1fr !important;
+    max-width:650px !important;
+    margin-top:48px !important;
+  }
+
+  #cfle-home-v4 .cfle-v4-prayer-slot,
+  #cfle-home-v4 .cfle-v4-shabbat-slot{
+    padding:0 4px !important;
+  }
+
+  #cfle-home-v4 .cfle-v4-shabbat-slot{
+    margin-top:40px !important;
+    padding-top:37px !important;
+    border-left:0 !important;
+    border-top:1px solid #ddd6ca !important;
+  }
+
+  #cfle-home-v4 .cfle-v4-mailing{
+    padding-left:18px !important;
+    padding-right:18px !important;
+  }
+
+  #cfle-home-v4 #formContainer fieldset{
+    grid-template-columns:1fr 1fr !important;
+  }
+}
+
+@media (max-width:700px){
+
+  #cfle-home-v4 .cfle-home-events-heading{
+    gap:10px !important;
+    margin-bottom:20px !important;
+    font-size:15px !important;
+    letter-spacing:.18em !important;
+  }
+
+  #cfle-home-v4 .cfle-home-events-heading:before,
+  #cfle-home-v4 .cfle-home-events-heading:after{
+    width:30px !important;
+  }
+
+  #cfle-home-v4 .cfle-home-event{
+    grid-template-columns:82px minmax(0,1fr) 32px !important;
+    gap:11px !important;
+    min-height:111px !important;
+    padding:11px !important;
+  }
+
+  #cfle-home-v4 .cfle-home-date-box{
+    width:82px !important;
+    min-height:86px !important;
+  }
+
+  #cfle-home-v4 .cfle-home-date-day{
+    font-size:33px !important;
+  }
+
+  #cfle-home-v4 .cfle-home-event-title{
+    font-size:23px !important;
+    line-height:1.04 !important;
+  }
+
+  #cfle-home-v4 .cfle-home-event-time{
+    font-size:13px !important;
+  }
+
+  #cfle-home-v4 .cfle-home-event-arrow{
+    width:30px !important;
+    height:30px !important;
+    font-size:18px !important;
+  }
+
+  #cfle-home-v4 .cfle-v4-prayer-slot .bottom_padding{
+    grid-template-columns:1fr !important;
+    gap:23px !important;
+    max-width:430px !important;
+    margin:0 auto !important;
+  }
+
+  #cfle-home-v4 .cfle-v4-prayer-block{
+    padding:0 10px !important;
+  }
+
+  #cfle-home-v4 .cfle-v4-prayer-block + .cfle-v4-prayer-block{
+    padding:22px 10px 0 !important;
+    border-left:0 !important;
+    border-top:1px solid #d9d5cf !important;
+  }
+
+  #cfle-home-v4 .times_wrapper .medium_top_padding{
+    grid-template-columns:84px minmax(0,1fr) !important;
+  }
+
+  #cfle-home-v4 .cfle-v4-mailing{
+    padding-top:95px !important;
+    padding-bottom:48px !important;
+  }
+
+  #cfle-home-v4 .cfle-v4-mailing-slot .widget_header h5{
+    gap:9px !important;
+    font-size:15px !important;
+    letter-spacing:.15em !important;
+  }
+
+  #cfle-home-v4 .cfle-v4-mailing-slot .widget_header h5:before,
+  #cfle-home-v4 .cfle-v4-mailing-slot .widget_header h5:after{
+    width:28px !important;
+  }
+
+  #cfle-home-v4 #formContainer fieldset{
+    grid-template-columns:1fr !important;
+    gap:8px !important;
+  }
+}
+
+@media (max-width:430px){
+  #cfle-home-v4 .cfle-home-event{
+    grid-template-columns:74px minmax(0,1fr) 28px !important;
+    gap:9px !important;
+    padding:10px !important;
+  }
+  #cfle-home-v4 .cfle-home-date-box{width:74px !important;min-height:82px !important;}
+  #cfle-home-v4 .cfle-home-date-day{font-size:30px !important;}
+  #cfle-home-v4 .cfle-home-event-title{font-size:21px !important;}
+}
