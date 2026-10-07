@@ -1,0 +1,306 @@
+/* ============================================================
+   CHABAD OF FORT LEE — HOMEPAGE EVENTS DESKTOP V6
+   DESKTOP ONLY. MOBILE IS INTENTIONALLY UNTOUCHED.
+   Loaded AFTER events.css and site-redesign-v4.css.
+   ============================================================ */
+
+@media (min-width:1025px){
+
+    /* Slightly lift the Upcoming section toward the hero. */
+    html body.home .chabad_updates.cfle-home-events-widget .cfle-home-events-shell{
+        margin-top:-12px !important;
+    }
+
+    /* Heading: only one step larger/bolder than the approved current style. */
+    html body.home .chabad_updates.cfle-home-events-widget .cfle-home-events-heading{
+        font-size:18px !important;
+        line-height:1.18 !important;
+        font-weight:900 !important;
+        letter-spacing:.075em !important;
+        margin-bottom:24px !important;
+    }
+
+    /*
+     * JS gives this list an exact viewport-centered width.
+     * These rules are intentionally forceful so older events.css
+     * flex/grid rules cannot make the cards stack unpredictably.
+     */
+    html body.home .chabad_updates.cfle-home-events-widget .cfle-home-events-list{
+        display:flex !important;
+        flex-flow:row wrap !important;
+        align-items:stretch !important;
+        justify-content:center !important;
+        align-content:flex-start !important;
+        column-gap:18px !important;
+        row-gap:18px !important;
+        box-sizing:border-box !important;
+        overflow:visible !important;
+    }
+
+    /* Equal-size desktop cards. Exact width is applied inline by V6 JS. */
+    html body.home .chabad_updates.cfle-home-events-widget a.cfle-home-event{
+        position:relative !important;
+
+        display:grid !important;
+        grid-template-columns:98px minmax(0,1fr) !important;
+        grid-template-areas:"date content" !important;
+        align-items:center !important;
+        column-gap:16px !important;
+
+        height:138px !important;
+        min-height:138px !important;
+        box-sizing:border-box !important;
+
+        margin:0 !important;
+        padding:13px 16px !important;
+
+        border:1.6px solid rgba(214,153,20,.82) !important;
+        border-radius:18px !important;
+
+        background:rgba(255,254,249,.92) !important;
+        color:#171b2d !important;
+        text-decoration:none !important;
+
+        box-shadow:0 7px 18px rgba(83,53,8,.055) !important;
+
+        overflow:hidden !important;
+
+        transition:
+            transform .18s ease,
+            border-color .18s ease,
+            box-shadow .18s ease,
+            background .18s ease !important;
+    }
+
+    html body.home .chabad_updates.cfle-home-events-widget a.cfle-home-event:hover{
+        transform:translateY(-2px) !important;
+        border-color:#d99400 !important;
+        background:#fffdf6 !important;
+        box-shadow:0 11px 25px rgba(83,53,8,.10) !important;
+    }
+
+    /* Larger date panel + clearly larger month / day / weekday. */
+    html body.home .chabad_updates.cfle-home-events-widget .cfle-home-date-box{
+        grid-area:date !important;
+
+        width:98px !important;
+        height:110px !important;
+        min-width:98px !important;
+        min-height:110px !important;
+
+        box-sizing:border-box !important;
+        margin:0 !important;
+        padding:7px 6px !important;
+
+        display:flex !important;
+        flex-direction:column !important;
+        align-items:center !important;
+        justify-content:center !important;
+
+        border:1.6px solid rgba(214,153,20,.68) !important;
+        border-radius:14px !important;
+
+        background:rgba(255,253,247,.96) !important;
+        text-align:center !important;
+    }
+
+    html body.home .chabad_updates.cfle-home-events-widget .cfle-home-date-month,
+    html body.home .chabad_updates.cfle-home-events-widget .cfle-home-date-weekday{
+        font-size:13.5px !important;
+        line-height:1 !important;
+        font-weight:900 !important;
+        letter-spacing:.075em !important;
+        color:#b57700 !important;
+        text-transform:uppercase !important;
+    }
+
+    html body.home .chabad_updates.cfle-home-events-widget .cfle-home-date-day{
+        margin:5px 0 4px !important;
+
+        font-size:42px !important;
+        line-height:.88 !important;
+        font-weight:900 !important;
+
+        color:#111827 !important;
+    }
+
+    html body.home .chabad_updates.cfle-home-events-widget .cfle-home-event-content{
+        grid-area:content !important;
+
+        min-width:0 !important;
+        width:100% !important;
+
+        display:flex !important;
+        flex-direction:column !important;
+        align-items:flex-start !important;
+        justify-content:center !important;
+
+        text-align:left !important;
+    }
+
+    /*
+     * Base title is intentionally LARGER than the prior 25px rule.
+     * JS only steps it down when a genuinely long title would exceed 2 lines.
+     */
+    html body.home .chabad_updates.cfle-home-events-widget .cfle-home-event-title{
+        display:block !important;
+
+        width:100% !important;
+        max-width:100% !important;
+
+        margin:0 0 7px !important;
+        padding:0 !important;
+
+        color:#11182d !important;
+
+        font-size:27px !important;
+        line-height:1.02 !important;
+        font-weight:900 !important;
+        letter-spacing:-.018em !important;
+
+        text-align:left !important;
+        white-space:normal !important;
+        word-break:normal !important;
+        overflow-wrap:normal !important;
+    }
+
+    html body.home .chabad_updates.cfle-home-events-widget .cfle-home-event-title.cfle-v6-title-fit-1{
+        font-size:25px !important;
+        line-height:1.03 !important;
+    }
+
+    html body.home .chabad_updates.cfle-home-events-widget .cfle-home-event-title.cfle-v6-title-fit-2{
+        font-size:23px !important;
+        line-height:1.04 !important;
+    }
+
+    html body.home .chabad_updates.cfle-home-events-widget .cfle-home-event-title.cfle-v6-title-fit-3{
+        font-size:21.5px !important;
+        line-height:1.04 !important;
+    }
+
+    html body.home .chabad_updates.cfle-home-events-widget .cfle-home-event-time{
+        display:block !important;
+
+        width:100% !important;
+        margin:0 !important;
+        padding:0 !important;
+
+        color:#536078 !important;
+
+        font-size:14.5px !important;
+        line-height:1.15 !important;
+        font-weight:700 !important;
+
+        white-space:nowrap !important;
+        text-align:left !important;
+    }
+
+    /* Hide any clock icon in the compact homepage time line. */
+    html body.home .chabad_updates.cfle-home-events-widget .cfle-home-event-time svg,
+    html body.home .chabad_updates.cfle-home-events-widget .cfle-home-event-time img{
+        display:none !important;
+    }
+
+    /* NO arrows anywhere in desktop homepage event cards. */
+    html body.home .chabad_updates.cfle-home-events-widget .cfle-home-event-arrow{
+        display:none !important;
+        visibility:hidden !important;
+        opacity:0 !important;
+        width:0 !important;
+        height:0 !important;
+        margin:0 !important;
+        padding:0 !important;
+        border:0 !important;
+    }
+
+    /* FEATURED card: same exact outer size as regular cards. */
+    html body.home .chabad_updates.cfle-home-events-widget a.cfle-home-event--featured{
+        grid-template-columns:98px minmax(0,1fr) 46px !important;
+        grid-template-areas:"date content featured-star" !important;
+        column-gap:15px !important;
+
+        border-color:rgba(207,139,0,.98) !important;
+
+        background:
+            linear-gradient(
+                135deg,
+                #f2dc9f 0%,
+                #f8eac7 52%,
+                #f4dfa9 100%
+            ) !important;
+
+        box-shadow:
+            inset 0 0 0 1px rgba(202,135,0,.075),
+            0 7px 18px rgba(83,53,8,.065) !important;
+    }
+
+    html body.home .chabad_updates.cfle-home-events-widget a.cfle-home-event--featured:hover{
+        border-color:#d79200 !important;
+
+        background:
+            linear-gradient(
+                135deg,
+                #efd38a 0%,
+                #f6e3b4 52%,
+                #f2d797 100%
+            ) !important;
+
+        box-shadow:
+            0 12px 26px rgba(83,53,8,.12),
+            0 0 0 3px rgba(214,148,0,.05) !important;
+    }
+
+    /* Real FEATURED pill inserted by JS; does not steal title width. */
+    html body.home .chabad_updates.cfle-home-events-widget .cfle-v6-featured-pill{
+        display:inline-flex !important;
+        align-items:center !important;
+        justify-content:center !important;
+
+        min-height:18px !important;
+        margin:0 0 6px !important;
+        padding:3px 9px 2px !important;
+
+        border-radius:999px !important;
+
+        background:linear-gradient(135deg,#dda724,#c88400) !important;
+        color:#fff !important;
+
+        font-family:Arial,sans-serif !important;
+        font-size:10px !important;
+        line-height:1 !important;
+        font-weight:900 !important;
+        letter-spacing:.095em !important;
+        text-transform:uppercase !important;
+
+        box-shadow:0 2px 6px rgba(166,105,0,.16) !important;
+    }
+
+    /* Large star lives exactly where the old arrow used to be. */
+    html body.home .chabad_updates.cfle-home-events-widget .cfle-home-featured-star{
+        grid-area:featured-star !important;
+
+        display:flex !important;
+        align-items:center !important;
+        justify-content:center !important;
+        align-self:center !important;
+        justify-self:center !important;
+
+        width:44px !important;
+        height:44px !important;
+
+        margin:0 !important;
+        padding:0 !important;
+
+        color:#cf8d00 !important;
+        font-size:39px !important;
+        line-height:1 !important;
+
+        text-shadow:0 2px 8px rgba(170,108,0,.22) !important;
+        transform:none !important;
+    }
+}
+
+/* ============================================================
+   MOBILE: NOTHING IN THIS FILE CHANGES MOBILE.
+   ============================================================ */
