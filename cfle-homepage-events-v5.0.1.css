@@ -1,0 +1,295 @@
+/* ============================================================
+   CHABAD OF FORT LEE — HOMEPAGE EVENT CARD POLISH V5
+   Desktop-focused override loaded AFTER events.css + site-redesign-v4.css
+   - Deterministic 1/2/3/4/5/6 desktop card layout
+   - Compact three-across cards
+   - Larger date panel + date typography
+   - Featured gold pill + large star; no arrow
+   - Left-aligned, two-line title handling
+   - Slightly stronger heading
+   - Desktop: pulls Upcoming section slightly closer to hero
+   - Mobile untouched
+   ============================================================ */
+
+/* Keep this patch homepage-only. */
+body.home .cfle-home-events-heading{
+    font-size:25px !important;
+    font-weight:800 !important;
+}
+
+@media (min-width:1025px){
+
+    /* Desktop only: pull Upcoming slightly closer to the hero. */
+    body.home .cfle-home-events-shell{
+        margin-top:-12px !important;
+    }
+
+    /* Constrain the event group so 3 cards fit cleanly without touching edges. */
+    body.home .cfle-home-events-shell{
+        width:100% !important;
+        max-width:1220px !important;
+        margin-left:auto !important;
+        margin-right:auto !important;
+        padding-left:26px !important;
+        padding-right:26px !important;
+        box-sizing:border-box !important;
+    }
+
+    /* Six logical columns = each normal card spans 2 = exactly 3 cards/row. */
+    body.home .cfle-home-events-list{
+        display:grid !important;
+        grid-template-columns:repeat(6,minmax(0,1fr)) !important;
+        gap:16px 18px !important;
+        align-items:stretch !important;
+        justify-content:center !important;
+        width:100% !important;
+        max-width:1160px !important;
+        margin:0 auto !important;
+    }
+
+    body.home .cfle-home-event{
+        position:relative !important;
+        grid-column:span 2 !important;
+        display:grid !important;
+        grid-template-columns:82px minmax(0,1fr) !important;
+        grid-template-areas:"date content" !important;
+        align-items:center !important;
+        column-gap:13px !important;
+        width:100% !important;
+        min-width:0 !important;
+        min-height:112px !important;
+        box-sizing:border-box !important;
+        margin:0 !important;
+        padding:10px 14px !important;
+        border:1.5px solid rgba(218,157,25,.72) !important;
+        border-radius:18px !important;
+        background:rgba(255,254,250,.72) !important;
+        box-shadow:0 6px 16px rgba(84,55,12,.045) !important;
+        color:#201b17 !important;
+        text-decoration:none !important;
+        overflow:hidden !important;
+        transition:
+            transform .18s ease,
+            border-color .18s ease,
+            box-shadow .18s ease,
+            background .18s ease !important;
+    }
+
+    body.home .cfle-home-event:hover{
+        transform:translateY(-2px) !important;
+        border-color:rgba(211,145,7,.95) !important;
+        box-shadow:0 10px 22px rgba(84,55,12,.085) !important;
+        background:#fffdf7 !important;
+    }
+
+    /* Larger, more important date block inside the now-smaller card. */
+    body.home .cfle-home-date-box{
+        grid-area:date !important;
+        width:82px !important;
+        height:88px !important;
+        min-height:88px !important;
+        padding:6px 5px !important;
+        border:1.5px solid rgba(218,157,25,.70) !important;
+        border-radius:14px !important;
+        background:rgba(255,252,245,.92) !important;
+        box-sizing:border-box !important;
+        display:flex !important;
+        flex-direction:column !important;
+        align-items:center !important;
+        justify-content:center !important;
+        text-align:center !important;
+    }
+
+    body.home .cfle-home-date-month,
+    body.home .cfle-home-date-weekday{
+        font-size:12px !important;
+        line-height:1 !important;
+        font-weight:900 !important;
+        letter-spacing:.075em !important;
+        color:#b57700 !important;
+        text-transform:uppercase !important;
+    }
+
+    body.home .cfle-home-date-day{
+        margin:3px 0 2px !important;
+        font-size:38px !important;
+        line-height:.90 !important;
+        font-weight:900 !important;
+        color:#111827 !important;
+    }
+
+    body.home .cfle-home-event-content{
+        grid-area:content !important;
+        min-width:0 !important;
+        display:flex !important;
+        flex-direction:column !important;
+        align-items:flex-start !important;
+        justify-content:center !important;
+        text-align:left !important;
+    }
+
+    /* Titles are always left aligned and never visually spill past two lines. */
+    body.home .cfle-home-event-title{
+        display:-webkit-box !important;
+        width:100% !important;
+        margin:0 0 4px !important;
+        overflow:hidden !important;
+        -webkit-box-orient:vertical !important;
+        -webkit-line-clamp:2 !important;
+        color:#111827 !important;
+        font-size:21px !important;
+        line-height:1.08 !important;
+        font-weight:900 !important;
+        letter-spacing:-.012em !important;
+        text-align:left !important;
+        overflow-wrap:normal !important;
+        word-break:normal !important;
+    }
+
+    body.home .cfle-home-event-title.cfle-home-title-fit-1{
+        font-size:19px !important;
+        line-height:1.07 !important;
+        letter-spacing:-.016em !important;
+    }
+
+    body.home .cfle-home-event-title.cfle-home-title-fit-2{
+        font-size:17.5px !important;
+        line-height:1.05 !important;
+        letter-spacing:-.020em !important;
+    }
+
+    body.home .cfle-home-event-time{
+        display:flex !important;
+        align-items:center !important;
+        justify-content:flex-start !important;
+        width:100% !important;
+        margin:0 !important;
+        gap:0 !important;
+        color:#596277 !important;
+        font-size:13px !important;
+        line-height:1.15 !important;
+        font-weight:700 !important;
+        white-space:nowrap !important;
+        text-align:left !important;
+    }
+
+    /* The card itself is the affordance; the old arrow is unnecessary. */
+    body.home .cfle-home-event-arrow{
+        display:none !important;
+    }
+
+    /* Featured: slightly stronger champagne/gold across the ENTIRE card. */
+    body.home .cfle-home-event--featured{
+        grid-template-columns:82px minmax(0,1fr) 38px !important;
+        grid-template-areas:"date content featured-star" !important;
+        border-color:rgba(210,145,4,.96) !important;
+        background:linear-gradient(
+            135deg,
+            #f4dfaa 0%,
+            #f8e9c4 52%,
+            #fff2d3 100%
+        ) !important;
+        box-shadow:
+            inset 0 0 0 1px rgba(202,136,0,.07),
+            0 6px 16px rgba(84,55,12,.055) !important;
+    }
+
+    body.home .cfle-home-event--featured:hover{
+        border-color:#d89500 !important;
+        background:linear-gradient(
+            135deg,
+            #f0d795 0%,
+            #f6e2b1 52%,
+            #ffedc6 100%
+        ) !important;
+        box-shadow:
+            0 11px 24px rgba(84,55,12,.11),
+            0 0 0 3px rgba(218,157,25,.055) !important;
+    }
+
+    /* Gold FEATURED pill above the event title. */
+    body.home .cfle-home-event--featured .cfle-home-event-content::before{
+        content:"FEATURED" !important;
+        display:inline-flex !important;
+        align-items:center !important;
+        justify-content:center !important;
+        min-height:17px !important;
+        margin:0 0 5px !important;
+        padding:2px 7px 1px !important;
+        border-radius:999px !important;
+        background:linear-gradient(135deg,#e0aa2a,#c98706) !important;
+        color:#fff !important;
+        font-size:9.5px !important;
+        line-height:1 !important;
+        font-weight:900 !important;
+        letter-spacing:.095em !important;
+        text-transform:uppercase !important;
+        box-shadow:0 2px 6px rgba(176,113,0,.14) !important;
+    }
+
+    /* Large star occupies the place formerly used by the arrow. */
+    body.home .cfle-home-featured-star{
+        grid-area:featured-star !important;
+        display:flex !important;
+        align-items:center !important;
+        justify-content:center !important;
+        align-self:center !important;
+        justify-self:center !important;
+        width:36px !important;
+        height:36px !important;
+        color:#cf8d00 !important;
+        font-size:34px !important;
+        line-height:1 !important;
+        text-shadow:0 2px 7px rgba(170,108,0,.20) !important;
+        transform:none !important;
+        transition:transform .18s ease,text-shadow .18s ease !important;
+    }
+
+    body.home .cfle-home-event--featured:hover .cfle-home-featured-star{
+        transform:scale(1.08) !important;
+        text-shadow:0 3px 10px rgba(170,108,0,.29) !important;
+    }
+
+    /* ---------- Exact card-count layout ---------- */
+
+    /* 1 = centered */
+    body.home .cfle-home-events-list > .cfle-home-event:only-child{
+        grid-column:3 / span 2 !important;
+    }
+
+    /* 2 = centered side-by-side */
+    body.home .cfle-home-events-list > .cfle-home-event:first-child:nth-last-child(2){
+        grid-column:2 / span 2 !important;
+    }
+    body.home .cfle-home-events-list > .cfle-home-event:first-child:nth-last-child(2) + .cfle-home-event{
+        grid-column:4 / span 2 !important;
+    }
+
+    /* 3 = default: 3 across */
+
+    /* 4 = 2 centered + 2 centered */
+    body.home .cfle-home-events-list > .cfle-home-event:first-child:nth-last-child(4){
+        grid-column:2 / span 2 !important;
+    }
+    body.home .cfle-home-events-list > .cfle-home-event:first-child:nth-last-child(4) + .cfle-home-event{
+        grid-column:4 / span 2 !important;
+    }
+    body.home .cfle-home-events-list > .cfle-home-event:first-child:nth-last-child(4) + .cfle-home-event + .cfle-home-event{
+        grid-column:2 / span 2 !important;
+    }
+    body.home .cfle-home-events-list > .cfle-home-event:first-child:nth-last-child(4) + .cfle-home-event + .cfle-home-event + .cfle-home-event{
+        grid-column:4 / span 2 !important;
+    }
+
+    /* 5 = 3 across + 2 centered */
+    body.home .cfle-home-events-list > .cfle-home-event:first-child:nth-last-child(5) + .cfle-home-event + .cfle-home-event + .cfle-home-event{
+        grid-column:2 / span 2 !important;
+    }
+    body.home .cfle-home-events-list > .cfle-home-event:first-child:nth-last-child(5) + .cfle-home-event + .cfle-home-event + .cfle-home-event + .cfle-home-event{
+        grid-column:4 / span 2 !important;
+    }
+
+    /* 6 = default: 3 + 3 */
+}
+
+/* Mobile intentionally untouched in this patch. */
