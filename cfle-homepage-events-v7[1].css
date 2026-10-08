@@ -1,0 +1,708 @@
+/* ============================================================
+   CHABAD OF FORT LEE — HOMEPAGE EVENTS DESKTOP V7
+   2026-10-07
+
+   Goals:
+   - NO JavaScript layout controller.
+   - events.js renders data-cfle-count immediately.
+   - Correct layout on first render, before/after V4 mounts.
+   - Mobile (<=1024px) intentionally untouched.
+   ============================================================ */
+
+@media (min-width:1025px){
+
+  /* ------------------------------------------------------------
+     Section position / heading
+     ------------------------------------------------------------ */
+
+  html body.home #cfle-home-v4 .cfle-v4-main{
+    padding-top:0 !important;
+  }
+
+  html body.home #cfle-home-v4 .cfle-v4-events-slot{
+    width:100% !important;
+    max-width:1400px !important;
+    margin:0 auto !important;
+  }
+
+  html body.home .chabad_updates.cfle-home-events-widget .cfle-home-events-shell,
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-events-shell{
+    width:100% !important;
+    max-width:none !important;
+    margin:0 !important;
+    padding:0 !important;
+    border:0 !important;
+    background:transparent !important;
+    box-shadow:none !important;
+  }
+
+  html body.home .chabad_updates.cfle-home-events-widget .cfle-home-events-heading,
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-events-heading{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    gap:18px !important;
+
+    width:100% !important;
+    margin:0 auto 21px !important;
+    padding:0 !important;
+
+    color:#b66f12 !important;
+    font-family:"Playfair Display",Georgia,"Times New Roman",serif !important;
+    font-size:20px !important;
+    line-height:1.16 !important;
+    font-weight:700 !important;
+    letter-spacing:.20em !important;
+    text-align:center !important;
+    text-transform:uppercase !important;
+  }
+
+  html body.home .chabad_updates.cfle-home-events-widget .cfle-home-events-heading:before,
+  html body.home .chabad_updates.cfle-home-events-widget .cfle-home-events-heading:after,
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-events-heading:before,
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-events-heading:after{
+    content:"" !important;
+    display:block !important;
+    flex:0 0 54px !important;
+    width:54px !important;
+    height:1px !important;
+    background:#d39a3c !important;
+  }
+
+  /* ------------------------------------------------------------
+     Count-aware list layout
+
+     1/2 total events = larger cards.
+     3+ total events  = compact three-across card width.
+     4 = 2x2 centered.
+     5 = 3 + centered 2.
+     6 = 3 + 3.
+     ------------------------------------------------------------ */
+
+  html body.home .chabad_updates.cfle-home-events-widget .cfle-home-events-list,
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-events-list{
+    --cfle-home-gap:clamp(14px,1.25vw,20px);
+
+    display:grid !important;
+    grid-template-columns:repeat(6,minmax(0,1fr)) !important;
+    align-items:stretch !important;
+    justify-content:center !important;
+
+    column-gap:var(--cfle-home-gap) !important;
+    row-gap:18px !important;
+
+    width:100% !important;
+    max-width:1400px !important;
+    margin:0 auto !important;
+    padding:0 !important;
+
+    overflow:visible !important;
+    box-sizing:border-box !important;
+  }
+
+  /* one larger centered card */
+  html body.home .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="1"],
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="1"]{
+    grid-template-columns:minmax(0,560px) !important;
+    max-width:560px !important;
+  }
+
+  /* two larger centered cards */
+  html body.home .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="2"],
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="2"]{
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    max-width:1120px !important;
+  }
+
+  /* 3/5/6 use six tracks; each card spans two = three equal cards */
+  html body.home .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="3"] > .cfle-home-event,
+  html body.home .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="5"] > .cfle-home-event,
+  html body.home .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="6"] > .cfle-home-event,
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="3"] > .cfle-home-event,
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="5"] > .cfle-home-event,
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="6"] > .cfle-home-event{
+    grid-column:span 2 !important;
+  }
+
+  /* 4 = two centered compact cards per row */
+  html body.home .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="4"] > .cfle-home-event:nth-child(1),
+  html body.home .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="4"] > .cfle-home-event:nth-child(3),
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="4"] > .cfle-home-event:nth-child(1),
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="4"] > .cfle-home-event:nth-child(3){
+    grid-column:2 / span 2 !important;
+  }
+
+  html body.home .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="4"] > .cfle-home-event:nth-child(2),
+  html body.home .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="4"] > .cfle-home-event:nth-child(4),
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="4"] > .cfle-home-event:nth-child(2),
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="4"] > .cfle-home-event:nth-child(4){
+    grid-column:4 / span 2 !important;
+  }
+
+  /* 5 = three across, then two centered */
+  html body.home .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="5"] > .cfle-home-event:nth-child(4),
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="5"] > .cfle-home-event:nth-child(4){
+    grid-column:2 / span 2 !important;
+  }
+
+  html body.home .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="5"] > .cfle-home-event:nth-child(5),
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="5"] > .cfle-home-event:nth-child(5){
+    grid-column:4 / span 2 !important;
+  }
+
+  /* ------------------------------------------------------------
+     Base compact card (3+ events)
+     ------------------------------------------------------------ */
+
+  html body.home .chabad_updates.cfle-home-events-widget a.cfle-home-event,
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget a.cfle-home-event{
+    position:relative !important;
+
+    display:grid !important;
+    grid-template-columns:86px minmax(0,1fr) !important;
+    grid-template-areas:"date content" !important;
+    align-items:center !important;
+    column-gap:20px !important;
+
+    width:auto !important;
+    max-width:none !important;
+    min-width:0 !important;
+
+    height:124px !important;
+    min-height:124px !important;
+
+    margin:0 !important;
+    padding:10px 15px !important;
+
+    border:1.6px solid rgba(213,157,47,.78) !important;
+    border-radius:20px !important;
+
+    background:rgba(255,254,250,.96) !important;
+    color:#11182d !important;
+    text-decoration:none !important;
+
+    box-shadow:0 7px 18px rgba(83,53,8,.055) !important;
+
+    overflow:hidden !important;
+    box-sizing:border-box !important;
+
+    transition:
+      transform .18s ease,
+      border-color .18s ease,
+      box-shadow .18s ease,
+      background .18s ease !important;
+  }
+
+  html body.home .chabad_updates.cfle-home-events-widget a.cfle-home-event:hover,
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget a.cfle-home-event:hover{
+    transform:translateY(-2px) !important;
+    border-color:#d99b1d !important;
+    background:#fffdf7 !important;
+    box-shadow:0 11px 25px rgba(83,53,8,.10) !important;
+  }
+
+  /* larger card treatment only when the TOTAL homepage count is 1 or 2 */
+  html body.home .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="1"] > a.cfle-home-event,
+  html body.home .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="2"] > a.cfle-home-event,
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="1"] > a.cfle-home-event,
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="2"] > a.cfle-home-event{
+    grid-template-columns:94px minmax(0,1fr) !important;
+    column-gap:24px !important;
+
+    height:130px !important;
+    min-height:130px !important;
+
+    padding:12px 18px !important;
+  }
+
+  /* ------------------------------------------------------------
+     Date block — narrower/shorter, but typography fills it
+     ------------------------------------------------------------ */
+
+  html body.home .chabad_updates.cfle-home-events-widget .cfle-home-date-box,
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-date-box{
+    grid-area:date !important;
+
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:center !important;
+    justify-content:center !important;
+
+    width:86px !important;
+    height:100px !important;
+    min-width:86px !important;
+    min-height:100px !important;
+
+    margin:0 !important;
+    padding:5px 4px !important;
+
+    border:1.6px solid #dfb85f !important;
+    border-radius:15px !important;
+
+    background:linear-gradient(180deg,#fffaf0 0%,#fffefb 100%) !important;
+    box-shadow:inset 0 0 0 2px rgba(229,169,0,.045) !important;
+
+    text-align:center !important;
+    box-sizing:border-box !important;
+  }
+
+  html body.home .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="1"] .cfle-home-date-box,
+  html body.home .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="2"] .cfle-home-date-box,
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="1"] .cfle-home-date-box,
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="2"] .cfle-home-date-box{
+    width:94px !important;
+    height:104px !important;
+    min-width:94px !important;
+    min-height:104px !important;
+  }
+
+  html body.home .chabad_updates.cfle-home-events-widget .cfle-home-date-month,
+  html body.home .chabad_updates.cfle-home-events-widget .cfle-home-date-weekday,
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-date-month,
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-date-weekday{
+    display:block !important;
+
+    color:#b87500 !important;
+    font-family:Arial,Helvetica,sans-serif !important;
+    font-size:12.5px !important;
+    line-height:1 !important;
+    font-weight:900 !important;
+    letter-spacing:.075em !important;
+    text-transform:uppercase !important;
+  }
+
+  html body.home .chabad_updates.cfle-home-events-widget .cfle-home-date-day,
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-date-day{
+    display:block !important;
+
+    margin:3px 0 2px !important;
+
+    color:#11182d !important;
+    font-family:Georgia,"Times New Roman",serif !important;
+    font-size:41px !important;
+    line-height:.90 !important;
+    font-weight:800 !important;
+    letter-spacing:-.035em !important;
+  }
+
+  html body.home .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="1"] .cfle-home-date-month,
+  html body.home .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="1"] .cfle-home-date-weekday,
+  html body.home .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="2"] .cfle-home-date-month,
+  html body.home .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="2"] .cfle-home-date-weekday,
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="1"] .cfle-home-date-month,
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="1"] .cfle-home-date-weekday,
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="2"] .cfle-home-date-month,
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="2"] .cfle-home-date-weekday{
+    font-size:13.5px !important;
+  }
+
+  html body.home .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="1"] .cfle-home-date-day,
+  html body.home .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="2"] .cfle-home-date-day,
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="1"] .cfle-home-date-day,
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="2"] .cfle-home-date-day{
+    font-size:45px !important;
+  }
+
+  /* Date-range fallbacks stay compact enough for the same box. */
+  html body.home .chabad_updates.cfle-home-events-widget .cfle-home-date-box--range .cfle-home-date-day,
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-date-box--range .cfle-home-date-day{
+    font-size:30px !important;
+    letter-spacing:-.04em !important;
+  }
+
+  html body.home .chabad_updates.cfle-home-events-widget .cfle-home-date-box--cross-month .cfle-home-date-month,
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-date-box--cross-month .cfle-home-date-month{
+    font-size:10.5px !important;
+    letter-spacing:.025em !important;
+  }
+
+  /* ------------------------------------------------------------
+     Content / typography
+     ------------------------------------------------------------ */
+
+  html body.home .chabad_updates.cfle-home-events-widget .cfle-home-event-content,
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-event-content{
+    grid-area:content !important;
+
+    display:flex !important;
+    flex-direction:column !important;
+    align-items:flex-start !important;
+    justify-content:center !important;
+
+    width:100% !important;
+    min-width:0 !important;
+
+    margin:0 !important;
+    padding:0 !important;
+
+    text-align:left !important;
+  }
+
+  html body.home .chabad_updates.cfle-home-events-widget .cfle-home-event-title,
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-event-title{
+    display:block !important;
+
+    width:100% !important;
+    max-width:100% !important;
+
+    margin:0 0 6px !important;
+    padding:0 !important;
+
+    color:#11182d !important;
+    font-family:Georgia,"Times New Roman",serif !important;
+
+    /* events.js V9.7 may reduce this inline only when required. */
+    font-size:26px !important;
+    line-height:1.06 !important;
+    font-weight:900 !important;
+    letter-spacing:-.018em !important;
+
+    text-align:left !important;
+    word-break:normal !important;
+    overflow-wrap:normal !important;
+  }
+
+  html body.home .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="1"] .cfle-home-event-title,
+  html body.home .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="2"] .cfle-home-event-title,
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="1"] .cfle-home-event-title,
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="2"] .cfle-home-event-title{
+    font-size:30px !important;
+  }
+
+  html body.home .chabad_updates.cfle-home-events-widget .cfle-home-event-time,
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-event-time{
+    display:flex !important;
+    align-items:center !important;
+    justify-content:flex-start !important;
+
+    width:100% !important;
+    margin:0 !important;
+    padding:0 !important;
+    gap:0 !important;
+
+    color:#536078 !important;
+    font-family:"Lato",Arial,Helvetica,sans-serif !important;
+    font-size:14.5px !important;
+    line-height:1.12 !important;
+    font-weight:600 !important;
+
+    white-space:nowrap !important;
+    text-align:left !important;
+  }
+
+  html body.home .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="1"] .cfle-home-event-time,
+  html body.home .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="2"] .cfle-home-event-time,
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="1"] .cfle-home-event-time,
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="2"] .cfle-home-event-time{
+    font-size:16px !important;
+  }
+
+  html body.home .cfle-home-event-time .cfle-meta-svg,
+  html body.home .cfle-home-event-time > svg,
+  html body.home #cfle-home-v4 .cfle-home-event-time .cfle-meta-svg,
+  html body.home #cfle-home-v4 .cfle-home-event-time > svg{
+    display:none !important;
+  }
+
+  /* ------------------------------------------------------------
+     Desktop arrow removal
+     ------------------------------------------------------------ */
+
+  html body.home .chabad_updates.cfle-home-events-widget .cfle-home-event-arrow,
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-event-arrow{
+    display:none !important;
+    visibility:hidden !important;
+    opacity:0 !important;
+    width:0 !important;
+    height:0 !important;
+    margin:0 !important;
+    padding:0 !important;
+    border:0 !important;
+  }
+
+  /* ------------------------------------------------------------
+     Featured card — Upcoming-page gold treatment, homepage layout
+     ------------------------------------------------------------ */
+
+  html body.home .chabad_updates.cfle-home-events-widget a.cfle-home-event--featured,
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget a.cfle-home-event--featured{
+    grid-template-columns:86px minmax(0,1fr) 48px !important;
+    grid-template-areas:"date content featured-star" !important;
+    column-gap:20px !important;
+
+    border-width:2px !important;
+    border-color:#dca31e !important;
+
+    background:
+      linear-gradient(
+        135deg,
+        #f9edcf 0%,
+        #fdf5e5 50%,
+        #fff8e8 100%
+      ) !important;
+
+    box-shadow:
+      0 8px 20px rgba(86,57,10,.075),
+      inset 0 0 0 1px rgba(229,169,0,.055) !important;
+  }
+
+  html body.home .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="1"] > a.cfle-home-event--featured,
+  html body.home .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="2"] > a.cfle-home-event--featured,
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="1"] > a.cfle-home-event--featured,
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="2"] > a.cfle-home-event--featured{
+    grid-template-columns:94px minmax(0,1fr) 54px !important;
+    column-gap:24px !important;
+  }
+
+  html body.home .chabad_updates.cfle-home-events-widget a.cfle-home-event--featured:hover,
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget a.cfle-home-event--featured:hover{
+    border-color:#efb62d !important;
+
+    background:
+      linear-gradient(
+        135deg,
+        #f6e5b9 0%,
+        #fbedcf 52%,
+        #fff5df 100%
+      ) !important;
+
+    box-shadow:
+      0 13px 29px rgba(94,61,7,.13),
+      0 0 0 3px rgba(229,169,0,.055),
+      inset 0 0 0 1px rgba(229,169,0,.07) !important;
+  }
+
+  /* FEATURED pill is part of content flow above the title. */
+  html body.home .cfle-home-featured-pill,
+  html body.home #cfle-home-v4 .cfle-home-featured-pill{
+    display:inline-flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+
+    min-height:20px !important;
+    margin:0 0 5px !important;
+    padding:3px 9px 2px !important;
+
+    border:1px solid rgba(190,127,12,.78) !important;
+    border-radius:999px !important;
+
+    background:linear-gradient(135deg,#f6cf5d,#d99b1d) !important;
+    color:#fff !important;
+
+    font-family:"Lato",Arial,Helvetica,sans-serif !important;
+    font-size:9.5px !important;
+    line-height:1 !important;
+    font-weight:900 !important;
+    letter-spacing:.07em !important;
+    text-transform:uppercase !important;
+
+    box-shadow:0 3px 8px rgba(190,127,12,.16) !important;
+  }
+
+  html body.home .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="1"] .cfle-home-featured-pill,
+  html body.home .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="2"] .cfle-home-featured-pill,
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="1"] .cfle-home-featured-pill,
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="2"] .cfle-home-featured-pill{
+    min-height:21px !important;
+    padding:3px 10px !important;
+    font-size:10px !important;
+  }
+
+  /* Big star: vertically centered at the far-right, where the arrow used to be. */
+  html body.home .chabad_updates.cfle-home-events-widget .cfle-home-featured-star,
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-featured-star{
+    grid-area:featured-star !important;
+
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    align-self:center !important;
+    justify-self:center !important;
+
+    width:44px !important;
+    height:44px !important;
+
+    margin:0 !important;
+    padding:0 !important;
+
+    color:#d7950a !important;
+    font-size:40px !important;
+    line-height:1 !important;
+
+    text-shadow:0 2px 8px rgba(177,119,8,.23) !important;
+    transform:none !important;
+
+    transition:
+      transform .18s ease,
+      text-shadow .18s ease !important;
+  }
+
+  html body.home .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="1"] .cfle-home-featured-star,
+  html body.home .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="2"] .cfle-home-featured-star,
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="1"] .cfle-home-featured-star,
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="2"] .cfle-home-featured-star{
+    width:50px !important;
+    height:50px !important;
+    font-size:46px !important;
+  }
+
+  html body.home .chabad_updates.cfle-home-events-widget .cfle-home-event--featured:hover .cfle-home-featured-star,
+  html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-event--featured:hover .cfle-home-featured-star{
+    transform:scale(1.06) !important;
+    text-shadow:0 3px 10px rgba(177,119,8,.32) !important;
+  }
+
+  /* ------------------------------------------------------------
+     View-all button
+     ------------------------------------------------------------ */
+
+  html body.home .cfle-home-events-more,
+  html body.home #cfle-home-v4 .cfle-home-events-more{
+    display:inline-flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    gap:8px !important;
+
+    min-height:44px !important;
+    margin:18px auto 0 !important;
+    padding:9px 24px !important;
+
+    border:1.6px solid #c98515 !important;
+    border-radius:999px !important;
+
+    background:#fffdf8 !important;
+    color:#17203a !important;
+
+    font-family:Georgia,"Times New Roman",serif !important;
+    font-size:16px !important;
+    line-height:1 !important;
+    font-weight:700 !important;
+
+    text-decoration:none !important;
+    box-shadow:0 5px 13px rgba(83,53,8,.035) !important;
+  }
+
+  html body.home .cfle-home-events-more:hover,
+  html body.home #cfle-home-v4 .cfle-home-events-more:hover{
+    background:#fff8e9 !important;
+    color:#11182d !important;
+    transform:translateY(-2px) !important;
+    box-shadow:0 8px 18px rgba(83,53,8,.075) !important;
+  }
+
+  /* ------------------------------------------------------------
+     Narrow desktop: preserve three-across without ugly wrapping.
+     ------------------------------------------------------------ */
+
+  @media (max-width:1199px){
+
+    html body.home .chabad_updates.cfle-home-events-widget a.cfle-home-event,
+    html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget a.cfle-home-event{
+      grid-template-columns:78px minmax(0,1fr) !important;
+      column-gap:14px !important;
+      height:118px !important;
+      min-height:118px !important;
+      padding:9px 11px !important;
+    }
+
+    html body.home .chabad_updates.cfle-home-events-widget .cfle-home-date-box,
+    html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-date-box{
+      width:78px !important;
+      height:94px !important;
+      min-width:78px !important;
+      min-height:94px !important;
+    }
+
+    html body.home .chabad_updates.cfle-home-events-widget .cfle-home-date-day,
+    html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-date-day{
+      font-size:38px !important;
+    }
+
+    html body.home .chabad_updates.cfle-home-events-widget .cfle-home-date-month,
+    html body.home .chabad_updates.cfle-home-events-widget .cfle-home-date-weekday,
+    html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-date-month,
+    html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-date-weekday{
+      font-size:11.5px !important;
+    }
+
+    html body.home .chabad_updates.cfle-home-events-widget a.cfle-home-event--featured,
+    html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget a.cfle-home-event--featured{
+      grid-template-columns:78px minmax(0,1fr) 38px !important;
+      column-gap:12px !important;
+    }
+
+    html body.home .chabad_updates.cfle-home-events-widget .cfle-home-featured-star,
+    html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-featured-star{
+      width:36px !important;
+      height:36px !important;
+      font-size:34px !important;
+    }
+
+    /*
+     * One/two-event layouts still stay larger at narrow desktop widths,
+     * but do not overflow the viewport.
+     */
+    html body.home .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="1"] > a.cfle-home-event,
+    html body.home .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="2"] > a.cfle-home-event,
+    html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="1"] > a.cfle-home-event,
+    html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="2"] > a.cfle-home-event{
+      grid-template-columns:88px minmax(0,1fr) !important;
+      column-gap:20px !important;
+      height:126px !important;
+      min-height:126px !important;
+      padding:11px 14px !important;
+    }
+
+    html body.home .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="1"] .cfle-home-date-box,
+    html body.home .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="2"] .cfle-home-date-box,
+    html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="1"] .cfle-home-date-box,
+    html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="2"] .cfle-home-date-box{
+      width:88px !important;
+      height:100px !important;
+      min-width:88px !important;
+      min-height:100px !important;
+    }
+
+    html body.home .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="1"] > a.cfle-home-event--featured,
+    html body.home .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="2"] > a.cfle-home-event--featured,
+    html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="1"] > a.cfle-home-event--featured,
+    html body.home #cfle-home-v4 .chabad_updates.cfle-home-events-widget .cfle-home-events-list[data-cfle-count="2"] > a.cfle-home-event--featured{
+      grid-template-columns:88px minmax(0,1fr) 44px !important;
+      column-gap:18px !important;
+    }
+  }
+}
+
+
+/* ============================================================
+   UPCOMING AT CHABAD PAGE — DESKTOP FEATURED BADGE POSITION
+   Requested visual-only adjustment:
+   keep the pill at the same top height, but move it to the right.
+   ============================================================ */
+
+@media (min-width:1025px){
+
+  #cfle-events
+  .cfle-grid.cfle-grid--featured
+  > .cfle-card.cfle-card--featured
+  > .cfle-card-body
+  > .cfle-tags{
+    top:3px !important;
+    left:auto !important;
+    right:0 !important;
+    bottom:auto !important;
+
+    justify-content:flex-end !important;
+  }
+
+  /*
+   * Leave enough room so a long featured title cannot run underneath
+   * the right-aligned Featured pill.
+   */
+  #cfle-events
+  .cfle-grid.cfle-grid--featured
+  > .cfle-card.cfle-card--featured
+  > .cfle-card-body{
+    padding-right:128px !important;
+  }
+}
