@@ -674,8 +674,12 @@ html body.home #cfle-home-v4 .cfle-v8-shabbat-detail-date{
     row-gap:18px !important;
   }
 
-  html body.home #cfle-home-v4 .cfle-home-events-list > .cfle-home-event{
-    grid-column:auto !important;
+  /* Stack every count (1, 2, 3, 4, 5, 6+). Must out-rank the desktop
+     count-4/count-5 nth-child placements above, so specificity is raised. */
+  html body.home #cfle-home-v4 .cfle-home-events-list > .cfle-home-event,
+  html body.home #cfle-home-v4 .cfle-home-events-list[data-cfle-count] > .cfle-home-event.cfle-home-event:nth-child(n){
+    grid-column:1 / -1 !important;
+    grid-row:auto !important;
   }
 
   html body.home #cfle-home-v4 a.cfle-home-event,
