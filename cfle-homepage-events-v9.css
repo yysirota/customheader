@@ -1330,15 +1330,18 @@ html body.home #cfle-home-v4 .cfle-v8-shabbat-detail-value{
 
    On the full-width card the calendar buttons occupy the top-right,
    so the pill moves above the title instead:
-   - pill top  = date box top
+   - pill sits a fixed 10px above the title
    - pill left = title left (same gap from the date box as the title)
+   - title/time/location stay vertically centered exactly as before
+   (v9.1.1: pill moved from date-box top to 10px above the title)
    Full desktop only (1025px+). Narrower widths are handled by the
    v9.1.0 responsive block below.
    ============================================================ */
 @media (min-width:1025px){
 
-  /* Body becomes the positioning box and fills the card row. The date
-     box is top-aligned in that row, so body top = date box top. */
+  /* Pill is in normal flow directly above the title. The bottom
+     padding equals pill height + gap, so the title block stays
+     centered where it was. */
   #cfle-events
   .cfle-grid.cfle-grid--featured
   > .cfle-card.cfle-card--featured:first-child:nth-last-child(odd)
@@ -1350,10 +1353,8 @@ html body.home #cfle-home-v4 .cfle-v8-shabbat-detail-value{
     justify-content:center !important;
     align-items:flex-start !important;
     box-sizing:border-box !important;
-    /* Reserve the pill's space top and bottom so the title stays
-       centered and can never run into the pill. */
-    padding-top:36px !important;
-    padding-bottom:36px !important;
+    padding-top:0 !important;
+    padding-bottom:34px !important;
   }
 
   #cfle-events
@@ -1361,17 +1362,18 @@ html body.home #cfle-home-v4 .cfle-v8-shabbat-detail-value{
   > .cfle-card.cfle-card--featured:first-child:nth-last-child(odd)
   > .cfle-card-body
   > .cfle-tags{
-    position:absolute !important;
-    top:0 !important;
-    left:0 !important;
+    position:static !important;
+    top:auto !important;
+    left:auto !important;
     right:auto !important;
     bottom:auto !important;
+    margin:0 0 10px !important;
   }
 }
 
 /* ============================================================
    UPCOMING AT CHABAD — RESPONSIVE CARDS FOR NON-FULL WIDTHS
-   v9.1.0 — 2026-11-09
+   v9.1.1 — 2026-11-09
 
    Applies ONLY at 1024px and narrower (phones, tablets, narrowed
    desktop windows). Full desktop (1025px+) is not touched.
@@ -1482,17 +1484,28 @@ html body.home #cfle-home-v4 .cfle-v8-shabbat-detail-value{
   /* ---------- title: fluid size, balanced wrapping, never clipped ----------
      !important overrides the inline sizes written by the JS title
      fitter, which is what clipped "Women's RCS Ev..." on phones. */
+  /* Fixed title-to-time/location spacing for every card. */
   #cfle-events#cfle-events .cfle-grid > .cfle-card .cfle-event-title{
     width:100% !important;
     max-width:100% !important;
-    margin:0 0 8px !important;
+    margin:0 0 10px !important;
+    padding:0 !important;
+    min-height:0 !important;
+    height:auto !important;
     text-align:left !important;
+  }
+
+  #cfle-events#cfle-events .cfle-grid > .cfle-card .cfle-event-title a{
+    margin:0 !important;
+    padding:0 !important;
+    min-height:0 !important;
+    height:auto !important;
   }
 
   #cfle-events#cfle-events .cfle-grid > .cfle-card .cfle-event-title,
   #cfle-events#cfle-events .cfle-grid > .cfle-card .cfle-event-title a{
     display:block !important;
-    font-size:clamp(20px,7.4cqi,28px) !important;
+    font-size:clamp(21px,7.9cqi,29px) !important;
     line-height:1.08 !important;
     white-space:normal !important;
     overflow:visible !important;
@@ -1521,6 +1534,7 @@ html body.home #cfle-home-v4 .cfle-v8-shabbat-detail-value{
     width:calc(100% + 22px) !important;
     max-width:none !important;
     margin:0 0 0 -22px !important;
+    margin-top:0 !important;
     padding:0 !important;
     clip-path:inset(-4px 0 -4px 22px) !important;
   }
@@ -1532,6 +1546,7 @@ html body.home #cfle-home-v4 .cfle-v8-shabbat-detail-value{
   #cfle-events#cfle-events .cfle-grid > .cfle-card .cfle-meta > :not(.cfle-meta-divider){
     display:inline-flex !important;
     align-items:center !important;
+    column-gap:6px !important;
     flex:0 1 auto !important;
     width:auto !important;
     max-width:100% !important;
@@ -1549,6 +1564,7 @@ html body.home #cfle-home-v4 .cfle-v8-shabbat-detail-value{
     display:inline-block !important;
     flex:0 0 22px !important;
     width:22px !important;
+    margin-right:-6px !important; /* cancels the item gap so the icon lines up with the title */
     text-align:center !important;
     color:#d39a2a !important;
     text-decoration:none !important;
@@ -1634,13 +1650,15 @@ html body.home #cfle-home-v4 .cfle-v8-shabbat-detail-value{
     }
     #cfle-events#cfle-events .cfle-grid > .cfle-card.cfle-card--featured > .cfle-card-body{
       position:relative !important;
-      padding-top:36px !important;
-      padding-bottom:36px !important;
+      padding-top:0 !important;
+      padding-bottom:32px !important;
     }
     #cfle-events#cfle-events .cfle-grid > .cfle-card.cfle-card--featured > .cfle-card-body > .cfle-tags{
-      top:0 !important;
-      left:0 !important;
+      position:static !important;
+      top:auto !important;
+      left:auto !important;
       right:auto !important;
+      margin:0 0 10px !important;
     }
   }
 
@@ -1665,13 +1683,25 @@ html body.home #cfle-home-v4 .cfle-v8-shabbat-detail-value{
     }
     #cfle-events#cfle-events .cfle-grid > .cfle-card.cfle-card--featured:first-child:nth-last-child(odd) > .cfle-card-body{
       position:relative !important;
-      padding-top:36px !important;
-      padding-bottom:36px !important;
+      padding-top:0 !important;
+      padding-bottom:32px !important;
     }
     #cfle-events#cfle-events .cfle-grid > .cfle-card.cfle-card--featured:first-child:nth-last-child(odd) > .cfle-card-body > .cfle-tags{
-      top:0 !important;
-      left:0 !important;
+      position:static !important;
+      top:auto !important;
+      left:auto !important;
       right:auto !important;
+      margin:0 0 10px !important;
     }
   }
+}
+
+/* ============================================================
+   UPCOMING PAGE — BIGGER DATE BOX TEXT (all widths)
+   Month, day number and weekday scaled up 15% so they fill more
+   of the box. Multi-day ranges are excluded because events.js
+   sizes those to fit exactly.
+   ============================================================ */
+#cfle-events .cfle-grid > .cfle-card > .cfle-date > span:not(.cfle-date-range-fit){
+  zoom:1.15;
 }
