@@ -1706,9 +1706,23 @@ html body.home #cfle-home-v4 .cfle-v8-shabbat-detail-value{
   zoom:1.15;
 }
 
-/* v9.1.2 — phones only: tighten title → time/location gap (10px → 8px) */
+/* ============================================================
+   v9.1.3 — PHONES ONLY (560px and narrower)
+   Raise the title + time/location block on Featured cards so the
+   time/location no longer sits level with the bottom of the date box.
+
+   Why the v9.1.2 gap change alone barely moved anything: the block is
+   vertically centered beside the date box, and the 26px space reserved
+   under the Featured pill pushes the whole block down. Adding bottom
+   space here re-balances it (block moves up ~6px) while the title still
+   keeps its full clearance from the pill. Title → time gap: 10px → 8px.
+   ============================================================ */
 @media (max-width:560px){
   #cfle-events#cfle-events .cfle-grid > .cfle-card .cfle-event-title{
     margin-bottom:8px !important;
+  }
+
+  #cfle-events#cfle-events .cfle-grid > .cfle-card.cfle-card--featured > .cfle-card-body{
+    padding-bottom:12px !important;
   }
 }
