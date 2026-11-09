@@ -1753,9 +1753,10 @@ html body.home #cfle-home-v4 .cfle-v8-shabbat-detail-value{
 /* ============================================================
    v9.1.5 — HOMEPAGE EVENT CARDS, PHONES ONLY (700px and narrower)
    - Space left of the date box = space above/below it (5px).
-   - Title descenders (the tail of "J", "g", "y") no longer clipped.
-     The title clips anything past 2 lines; this gives the glyph
-     tails room inside that clip without moving anything.
+   - Title letters no longer clipped: the tail of "J" on the left
+     and "g"/"y"/"p" on the bottom. The title clips anything past
+     2 lines; this gives those tails room without moving anything.
+     (v9.1.6: left side added)
    - Gap between cards 18px → 16px.
    ============================================================ */
 @media (max-width:700px){
@@ -1763,7 +1764,15 @@ html body.home #cfle-home-v4 .cfle-v8-shabbat-detail-value{
     padding-left:5px !important;
   }
 
+  /* Room for letters that reach slightly past their own box: the
+     tail of "J" (left) and "g"/"y"/"p" (bottom). The box grows by a
+     sliver on those sides and is pulled back by the same amount, so
+     the text itself does not move and wraps exactly as before. */
   html body.home #cfle-home-v4#cfle-home-v4 .cfle-home-event-title{
+    box-sizing:content-box !important;
+    max-width:none !important;
+    padding-left:.12em !important;
+    margin-left:-.12em !important;
     padding-bottom:.08em !important;
     margin-bottom:calc(5px - .08em) !important;
   }
