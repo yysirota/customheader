@@ -1323,3 +1323,48 @@ html body.home #cfle-home-v4 .cfle-v8-shabbat-detail-value{
     margin-bottom:6px !important;
   }
 }
+
+/* ============================================================
+   FULL UPCOMING PAGE — FEATURED PILL ON THE WIDE (FULL-ROW) CARD
+   v9.0.2 — 2026-11-09
+
+   On the full-width card the calendar buttons occupy the top-right,
+   so the pill moves above the title instead:
+   - pill top  = date box top
+   - pill left = title left (same gap from the date box as the title)
+   Half-width cards keep the top-right pill. Mobile (<=700px) is
+   unchanged because the wide layout only exists at 701px+.
+   ============================================================ */
+@media (min-width:701px){
+
+  /* Body becomes the positioning box and fills the card row. The date
+     box is top-aligned in that row, so body top = date box top. */
+  #cfle-events
+  .cfle-grid.cfle-grid--featured
+  > .cfle-card.cfle-card--featured:first-child:nth-last-child(odd)
+  > .cfle-card-body{
+    position:relative !important;
+    align-self:stretch !important;
+    display:flex !important;
+    flex-direction:column !important;
+    justify-content:center !important;
+    align-items:flex-start !important;
+    box-sizing:border-box !important;
+    /* Reserve the pill's space top and bottom so the title stays
+       centered and can never run into the pill. */
+    padding-top:36px !important;
+    padding-bottom:36px !important;
+  }
+
+  #cfle-events
+  .cfle-grid.cfle-grid--featured
+  > .cfle-card.cfle-card--featured:first-child:nth-last-child(odd)
+  > .cfle-card-body
+  > .cfle-tags{
+    position:absolute !important;
+    top:0 !important;
+    left:0 !important;
+    right:auto !important;
+    bottom:auto !important;
+  }
+}
