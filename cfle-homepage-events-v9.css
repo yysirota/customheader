@@ -1332,10 +1332,10 @@ html body.home #cfle-home-v4 .cfle-v8-shabbat-detail-value{
    so the pill moves above the title instead:
    - pill top  = date box top
    - pill left = title left (same gap from the date box as the title)
-   Half-width cards keep the top-right pill. Mobile (<=700px) is
-   unchanged because the wide layout only exists at 701px+.
+   Full desktop only (1025px+). Narrower widths are handled by the
+   v9.1.0 responsive block below.
    ============================================================ */
-@media (min-width:701px){
+@media (min-width:1025px){
 
   /* Body becomes the positioning box and fills the card row. The date
      box is top-aligned in that row, so body top = date box top. */
@@ -1366,5 +1366,312 @@ html body.home #cfle-home-v4 .cfle-v8-shabbat-detail-value{
     left:0 !important;
     right:auto !important;
     bottom:auto !important;
+  }
+}
+
+/* ============================================================
+   UPCOMING AT CHABAD — RESPONSIVE CARDS FOR NON-FULL WIDTHS
+   v9.1.0 — 2026-11-09
+
+   Applies ONLY at 1024px and narrower (phones, tablets, narrowed
+   desktop windows). Full desktop (1025px+) is not touched.
+
+   One general system instead of per-size patches. Layout is
+   decided by the space the cards ACTUALLY have (CSS container
+   queries), and text sizes scale smoothly with the card width:
+
+   - Section 740px+ wide : 2 columns; a lone first card is full-row.
+   - Section 600–739px   : 1 column.
+   - Full-row card 600px+: date | title | compact buttons, side by side.
+   - Anything narrower   : date | title on top, buttons underneath.
+
+   Also:
+   - Buttons in the side-by-side layout shrink to fit their text.
+   - Date box always fills the card's height (no empty gap under it).
+   - Titles wrap onto balanced lines and are never cut off.
+   - Time and location share one line with the gold divider when
+     they fit; when they don't, location moves to its own line and
+     the divider disappears (no orphaned "|").
+   - Featured pill never touches the title.
+   ============================================================ */
+@media (max-width:1024px){
+
+  /* ---------- containers ---------- */
+  #cfle-events #cfle-featured-section,
+  #cfle-events #cfle-main-section{
+    width:100% !important;
+    container:cfle-section / inline-size;
+  }
+
+  #cfle-events#cfle-events .cfle-grid > .cfle-card{
+    container:cfle-card / inline-size;
+  }
+
+  /* ---------- grid: 2 columns by default ---------- */
+  #cfle-events#cfle-events .cfle-grid{
+    display:grid !important;
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    gap:18px !important;
+  }
+
+  #cfle-events#cfle-events .cfle-grid > .cfle-card{
+    grid-column:auto !important;
+  }
+
+  #cfle-events#cfle-events .cfle-grid > .cfle-card:first-child:nth-last-child(odd){
+    grid-column:1 / -1 !important;
+  }
+
+  /* ---------- card: STACKED layout (default) ---------- */
+  #cfle-events#cfle-events .cfle-grid > .cfle-card{
+    position:relative !important;
+    display:grid !important;
+    grid-template-columns:auto minmax(0,1fr) !important;
+    grid-template-areas:
+      "date body"
+      "actions actions" !important;
+    align-items:stretch !important;
+    column-gap:16px !important;
+    row-gap:16px !important;
+    min-height:0 !important;
+    height:auto !important;
+    padding:18px !important;
+  }
+
+  /* Date box fills the full height of its row. */
+  #cfle-events#cfle-events .cfle-grid > .cfle-card > .cfle-date{
+    grid-area:date !important;
+    align-self:stretch !important;
+    width:clamp(88px,26cqi,112px) !important;
+    height:auto !important;
+    min-height:122px !important;
+    margin:0 !important;
+  }
+
+  /* Title/time/location block: vertically centered beside the date. */
+  #cfle-events#cfle-events .cfle-grid > .cfle-card > .cfle-card-body{
+    grid-area:body !important;
+    align-self:stretch !important;
+    display:flex !important;
+    flex-direction:column !important;
+    justify-content:center !important;
+    align-items:flex-start !important;
+    min-width:0 !important;
+    width:auto !important;
+    margin:0 !important;
+    padding:0 !important;
+    transform:none !important;
+  }
+
+  /* Featured (stacked): pill stays in the card's top-right corner;
+     the title starts below it so they never touch. */
+  #cfle-events#cfle-events .cfle-grid > .cfle-card.cfle-card--featured > .cfle-card-body{
+    position:static !important;
+    padding-top:26px !important;
+  }
+
+  #cfle-events#cfle-events .cfle-grid > .cfle-card.cfle-card--featured > .cfle-card-body > .cfle-tags{
+    position:absolute !important;
+    top:9px !important;
+    right:9px !important;
+    left:auto !important;
+    bottom:auto !important;
+    margin:0 !important;
+  }
+
+  /* ---------- title: fluid size, balanced wrapping, never clipped ----------
+     !important overrides the inline sizes written by the JS title
+     fitter, which is what clipped "Women's RCS Ev..." on phones. */
+  #cfle-events#cfle-events .cfle-grid > .cfle-card .cfle-event-title{
+    width:100% !important;
+    max-width:100% !important;
+    margin:0 0 8px !important;
+    text-align:left !important;
+  }
+
+  #cfle-events#cfle-events .cfle-grid > .cfle-card .cfle-event-title,
+  #cfle-events#cfle-events .cfle-grid > .cfle-card .cfle-event-title a{
+    display:block !important;
+    font-size:clamp(20px,7.4cqi,28px) !important;
+    line-height:1.08 !important;
+    white-space:normal !important;
+    overflow:visible !important;
+    text-overflow:clip !important;
+    -webkit-line-clamp:unset !important;
+    -webkit-box-orient:initial !important;
+    overflow-wrap:normal !important;
+    word-break:normal !important;
+    hyphens:none !important;
+    text-wrap:balance !important;
+  }
+
+  /* ---------- time | location ----------
+     Each item after the first gets its own divider. Dividers that
+     land at the start of a line are clipped away, so a wrapped
+     location never leaves a stray "|" behind. */
+  #cfle-events#cfle-events .cfle-grid > .cfle-card .cfle-meta{
+    display:flex !important;
+    flex-direction:row !important;
+    flex-wrap:wrap !important;
+    align-items:center !important;
+    justify-content:flex-start !important;
+    text-align:left !important;
+    column-gap:0 !important;
+    row-gap:4px !important;
+    width:calc(100% + 22px) !important;
+    max-width:none !important;
+    margin:0 0 0 -22px !important;
+    padding:0 !important;
+    clip-path:inset(-4px 0 -4px 22px) !important;
+  }
+
+  #cfle-events#cfle-events .cfle-grid > .cfle-card .cfle-meta > .cfle-meta-divider{
+    display:none !important;
+  }
+
+  #cfle-events#cfle-events .cfle-grid > .cfle-card .cfle-meta > :not(.cfle-meta-divider){
+    display:inline-flex !important;
+    align-items:center !important;
+    flex:0 1 auto !important;
+    width:auto !important;
+    max-width:100% !important;
+    min-width:0 !important;
+    margin:0 !important;
+  }
+
+  #cfle-events#cfle-events .cfle-grid > .cfle-card .cfle-meta > :not(.cfle-meta-divider) > span{
+    white-space:normal !important;
+    min-width:0 !important;
+  }
+
+  #cfle-events#cfle-events .cfle-grid > .cfle-card .cfle-meta > :not(.cfle-meta-divider)::before{
+    content:"|" !important;
+    display:inline-block !important;
+    flex:0 0 22px !important;
+    width:22px !important;
+    text-align:center !important;
+    color:#d39a2a !important;
+    text-decoration:none !important;
+  }
+
+  /* ---------- buttons (stacked): two calendars side by side,
+     View Details full width underneath ---------- */
+  #cfle-events#cfle-events .cfle-grid > .cfle-card > .cfle-event-actions{
+    grid-area:actions !important;
+    display:grid !important;
+    grid-template-columns:repeat(2,minmax(0,1fr)) !important;
+    gap:10px !important;
+    width:100% !important;
+    margin:0 !important;
+    align-self:end !important;
+  }
+
+  #cfle-events#cfle-events .cfle-grid > .cfle-card > .cfle-event-actions > .cfle-view-action{
+    grid-column:1 / -1 !important;
+  }
+
+  #cfle-events#cfle-events .cfle-grid > .cfle-card > .cfle-event-actions > .cfle-action{
+    width:100% !important;
+    min-width:0 !important;
+    margin:0 !important;
+    white-space:nowrap !important;
+  }
+
+  /* Very small phones: calendar buttons stack instead of squeezing. */
+  @container cfle-card (max-width:270px){
+    #cfle-events#cfle-events .cfle-grid > .cfle-card > .cfle-event-actions{
+      grid-template-columns:minmax(0,1fr) !important;
+    }
+  }
+
+  /* ============ section 600–739px: one column ============ */
+  @container cfle-section (max-width:739.98px){
+    #cfle-events#cfle-events .cfle-grid{
+      grid-template-columns:minmax(0,1fr) !important;
+    }
+  }
+
+  /* ============ full-row cards with room: SIDE-BY-SIDE ============
+     Applies to the lone full-row card when there are 2 columns,
+     and to every card when there is 1 column. */
+  @container cfle-section (min-width:600px) and (max-width:739.98px){
+    #cfle-events#cfle-events .cfle-grid > .cfle-card{
+      grid-template-columns:auto minmax(0,1fr) max-content !important;
+      grid-template-areas:"date body actions" !important;
+      column-gap:20px !important;
+      padding:20px 22px !important;
+    }
+  }
+
+  @container cfle-section (min-width:740px){
+    #cfle-events#cfle-events .cfle-grid > .cfle-card:first-child:nth-last-child(odd){
+      grid-template-columns:auto minmax(0,1fr) max-content !important;
+      grid-template-areas:"date body actions" !important;
+      column-gap:22px !important;
+      padding:22px 24px !important;
+    }
+  }
+
+  /* What the side-by-side layout changes inside the card. */
+  @container cfle-section (min-width:600px) and (max-width:739.98px){
+    #cfle-events#cfle-events .cfle-grid > .cfle-card > .cfle-date{
+      width:112px !important;
+      min-height:140px !important;
+    }
+    #cfle-events#cfle-events .cfle-grid > .cfle-card .cfle-event-title,
+    #cfle-events#cfle-events .cfle-grid > .cfle-card .cfle-event-title a{
+      font-size:clamp(22px,4.4cqi,34px) !important;
+    }
+    #cfle-events#cfle-events .cfle-grid > .cfle-card > .cfle-event-actions{
+      grid-template-columns:max-content !important;
+      align-self:center !important;
+      align-content:center !important;
+      gap:9px !important;
+    }
+    #cfle-events#cfle-events .cfle-grid > .cfle-card > .cfle-event-actions > .cfle-action{
+      padding-left:16px !important;
+      padding-right:16px !important;
+    }
+    #cfle-events#cfle-events .cfle-grid > .cfle-card.cfle-card--featured > .cfle-card-body{
+      position:relative !important;
+      padding-top:36px !important;
+      padding-bottom:36px !important;
+    }
+    #cfle-events#cfle-events .cfle-grid > .cfle-card.cfle-card--featured > .cfle-card-body > .cfle-tags{
+      top:0 !important;
+      left:0 !important;
+      right:auto !important;
+    }
+  }
+
+  @container cfle-section (min-width:740px){
+    #cfle-events#cfle-events .cfle-grid > .cfle-card:first-child:nth-last-child(odd) > .cfle-date{
+      width:122px !important;
+      min-height:150px !important;
+    }
+    #cfle-events#cfle-events .cfle-grid > .cfle-card:first-child:nth-last-child(odd) .cfle-event-title,
+    #cfle-events#cfle-events .cfle-grid > .cfle-card:first-child:nth-last-child(odd) .cfle-event-title a{
+      font-size:clamp(22px,4.4cqi,36px) !important;
+    }
+    #cfle-events#cfle-events .cfle-grid > .cfle-card:first-child:nth-last-child(odd) > .cfle-event-actions{
+      grid-template-columns:max-content !important;
+      align-self:center !important;
+      align-content:center !important;
+      gap:9px !important;
+    }
+    #cfle-events#cfle-events .cfle-grid > .cfle-card:first-child:nth-last-child(odd) > .cfle-event-actions > .cfle-action{
+      padding-left:16px !important;
+      padding-right:16px !important;
+    }
+    #cfle-events#cfle-events .cfle-grid > .cfle-card.cfle-card--featured:first-child:nth-last-child(odd) > .cfle-card-body{
+      position:relative !important;
+      padding-top:36px !important;
+      padding-bottom:36px !important;
+    }
+    #cfle-events#cfle-events .cfle-grid > .cfle-card.cfle-card--featured:first-child:nth-last-child(odd) > .cfle-card-body > .cfle-tags{
+      top:0 !important;
+      left:0 !important;
+      right:auto !important;
+    }
   }
 }
